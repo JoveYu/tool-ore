@@ -211,7 +211,7 @@ export default function TextAnalyzer() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="请在此输入或粘贴需要统计与排版的文本..."
-          className="w-full p-5 font-mono text-sm leading-relaxed bg-transparent outline-none resize-none select-all text-slate-900 dark:text-slate-100"
+          className="w-full p-5 font-mono text-sm leading-relaxed bg-white dark:bg-slate-900 outline-none resize-y min-h-[300px] text-slate-900 dark:text-slate-100 cursor-text"
         />
 
         {/* Footer info bar */}
