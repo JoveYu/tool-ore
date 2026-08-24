@@ -2,18 +2,35 @@
 	"name": "tool-ore",
 	"version": "0.0.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev",
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"worker:dev": "wrangler dev",
+		"deploy": "vite build && wrangler deploy",
 		"test": "vitest",
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.22.0",
+		"@tailwindcss/vite": "^4.3.3",
 		"@types/node": "^26.2.0",
+		"@types/react": "^19.2.18",
+		"@types/react-dom": "^19.2.5",
+		"@vitejs/plugin-react": "^6.1.0",
+		"tailwindcss": "^4.3.3",
 		"typescript": "^5.5.2",
+		"vite": "^8.2.2",
 		"vitest": "~4.1.0",
 		"wrangler": "^4.125.0"
+	},
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"lucide-react": "^1.33.0",
+		"pinyin-pro": "^3.29.3",
+		"react": "^19.2.8",
+		"react-dom": "^19.2.8",
+		"tailwind-merge": "^3.6.0"
 	}
 }

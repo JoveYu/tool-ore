@@ -1,41 +1,46 @@
-# Cloudflare Workers
+# Tool-Ore 在线工具项目规范与开发指南
 
-STOP. Your knowledge of Cloudflare Workers APIs and limits may be outdated. Always retrieve current documentation before any Workers, KV, R2, D1, Durable Objects, Queues, Vectorize, AI, or Agents SDK task.
+## 1. 项目简介与架构
+- **定位**：纯前端轻量级在线工具集合，零后端，所有计算在客户端/浏览器本地完成。
+- **技术栈**：React 19 + TypeScript + Vite + Tailwind CSS v4 + Lucide Icons。
+- **包管理与运行**：优先使用 `bun` 作为包管理器和脚本执行器。
+- **部署平台**：Cloudflare Workers（通过 Worker 绑定静态资源托管 SPA 单页应用）。
+- **设计风格**：简洁、现代、美观，遵循 Tailwind 原子类，尽量避免编写自定义 CSS；支持白天模式、夜间模式与自动跟随系统设置。
 
-## Docs
+---
 
-- https://developers.cloudflare.com/workers/
-- MCP: `https://docs.mcp.cloudflare.com/mcp`
+## 2. 页面布局与工具注册机制
+- **布局模式**：左侧分类与工具导航栏（支持折叠、全局工具搜索、深浅色切换、移动端抽屉），右侧为当前工具独立工作区或聚合仪表盘。
+- **路由机制**：基于 Hash 驱动（`#/tool-id`）与 React `lazy` / `Suspense` 按需加载。
+- **目录规范**：
+  - `src/types/tool.ts`：工具定义与分类接口（`ToolDefinition`, `CategoryInfo`）。
+  - `src/registry.ts`：集中管理工具与分类元数据，新增工具需在此注册。
+  - `src/tools/<category>/<ToolName>.tsx`：每个工具独立为单个目录和组件，工具内辅助函数分离为单独的 `*Utils.ts` 文件。
+  - `test/`：对应的纯函数单元测试。
 
-For all limits and quotas, retrieve from the product's `/platform/limits/` page. eg. `/workers/platform/limits`
+---
 
-## Commands
+## 3. 开发行为规范（重要）
+1. **禁止自动部署**：
+   - 严禁在完成代码编写后擅自执行 `wrangler deploy` / 部署到线上。
+   - 只有在用户明确发出部署指令时（如明确输入“部署到线上”或“执行 deploy”），才允许执行部署命令。
+2. **严禁无故全量覆写文件**：
+   - 修改已有代码或配置文件时，**必须优先使用精准局部替换（`edit` 工具）**，绝不滥用全量覆写（`write` 工具）。
+   - 只有在新建全新文件时才使用 `write`。
+3. **保持分类与工具精简纯净**：
+   - 绝不保留未实现的占位工具或无用的空分类，当前无工具的分类不应在注册表与类型中列出。
+   - 界面避免过度夸张的宣传性文案（如“100% 本地运算”、“Client Only”等提示词按需保持克制极简）。
+4. **自验证要求**：
+   - 修改后执行 `bun run test` 保证单测通过，并运行 `bun run build` 确保 TypeScript 类型与 Vite 打包无错误。
 
-| Command | Purpose |
-|---------|---------|
-| `npx wrangler dev` | Local development |
-| `npx wrangler deploy` | Deploy to Cloudflare |
-| `npx wrangler types` | Generate TypeScript types |
+---
 
-Run `wrangler types` after changing bindings in wrangler.jsonc.
+## 4. 常用脚本命令
+| 命令 | 说明 |
+|---|---|
+| `bun run dev` | 本地前端开发服务（Vite） |
+| `bun run build` | 前端生产打包（生成 dist 静态资源） |
+| `bun run test` | 执行 Vitest 纯函数单元测试 |
+| `bunx wrangler dev` | Workers 本地静态代理测试 |
+| `bunx wrangler deploy` | 部署到 Cloudflare（必须在用户明确指令时运行） |
 
-## Node.js Compatibility
-
-https://developers.cloudflare.com/workers/runtime-apis/nodejs/
-
-## Errors
-
-- **Error 1102** (CPU/Memory exceeded): Retrieve limits from `/workers/platform/limits/`
-- **All errors**: https://developers.cloudflare.com/workers/observability/errors/
-
-## Product Docs
-
-Retrieve API references and limits from:
-`/kv/` · `/r2/` · `/d1/` · `/durable-objects/` · `/queues/` · `/vectorize/` · `/workers-ai/` · `/agents/`
-
-## Best Practices (conditional)
-
-If the application uses Durable Objects or Workflows, refer to the relevant best practices:
-
-- Durable Objects: https://developers.cloudflare.com/durable-objects/best-practices/rules-of-durable-objects/
-- Workflows: https://developers.cloudflare.com/workflows/build/rules-of-workflows/
