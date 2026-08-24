@@ -19,6 +19,7 @@ import {
   Regex,
   Lock,
   Barcode,
+  Smile,
   Wrench,
   LucideIcon,
 } from "lucide-react";
@@ -43,6 +44,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Regex,
   Lock,
   Barcode,
+  Smile,
   Wrench,
 };
 

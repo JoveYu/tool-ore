@@ -92,6 +92,16 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/text/TextAnalyzer")),
   },
+  {
+    id: "emoji-searcher",
+    name: "Emoji 表情",
+    description: "支持中文、拼音、英文模糊搜索与常用表情一键点击复制",
+    category: "text",
+    tags: ["emoji", "表情", "表情包", "符号", "颜文字", "emoticons"],
+    iconName: "Smile",
+    status: "stable",
+    component: lazy(() => import("./tools/text/EmojiSearcher")),
+  },
 
   // 3. 图片工具
   {
