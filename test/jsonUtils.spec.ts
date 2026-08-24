@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { formatJson, minifyJson, sortObjectKeys } from "../src/tools/text/jsonUtils";
+import { formatJson, minifyJson, sortObjectKeys } from "../src/tools/dev/jsonUtils";
 
 describe("JSON Formatter Utilities", () => {
   it("formats valid JSON with custom indentation", () => {

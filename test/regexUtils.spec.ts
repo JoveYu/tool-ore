@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { testRegex } from "../src/tools/text/regexUtils";
+import { testRegex } from "../src/tools/dev/regexUtils";
 
 describe("Regex Tester Utilities", () => {
   it("matches simple patterns with global flag", () => {

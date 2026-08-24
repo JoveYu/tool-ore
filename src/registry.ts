@@ -3,26 +3,65 @@ import { CategoryInfo, ToolDefinition } from "./types/tool";
 
 export const CATEGORIES: CategoryInfo[] = [
   {
+    id: "dev",
+    name: "开发工具",
+    description: "JSON 格式化、正则测试、进制转换等开发常用工具",
+    iconName: "Code2",
+  },
+  {
     id: "text",
     name: "文本工具",
-    description: "大写金额转换、文本处理等",
+    description: "大写金额转换、文本比对、字数排版等文本处理",
     iconName: "FileText",
   },
   {
     id: "image",
     name: "图片工具",
-    description: "图片压缩、格式转换、颜色拾取等前端图形处理",
+    description: "图片压缩、格式转换、颜色拾取、二维码生成等",
     iconName: "Image",
   },
   {
     id: "crypto",
     name: "加密工具",
-    description: "Base64 编解码、哈希散列等安全计算",
+    description: "Base64、哈希散列、对称加解密、非对称与密码生成",
     iconName: "KeyRound",
   },
 ];
 
 export const TOOLS: ToolDefinition[] = [
+  // 1. 开发工具
+  {
+    id: "json-formatter",
+    name: "JSON 格式化 / 校验",
+    description: "JSON 语法校验、精准错误定位、树形美化、Key 键排序与单行压缩",
+    category: "dev",
+    tags: ["json", "格式化", "美化", "压缩", "校验", "minify", "beautify"],
+    iconName: "Braces",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/JsonFormatter")),
+  },
+  {
+    id: "regex-tester",
+    name: "正则表达式测试",
+    description: "实时正则匹配高亮、捕获组分析、正则替换与常用表达式库",
+    category: "dev",
+    tags: ["regex", "正则", "正则表达式", "replace", "匹配", "regexp"],
+    iconName: "Regex",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/RegexTester")),
+  },
+  {
+    id: "radix-converter",
+    name: "进制转换",
+    description: "支持 2、8、10、16、32、36、64 进制任意数值高精度大数互转",
+    category: "dev",
+    tags: ["进制", "进制转换", "二进制", "十进制", "十六进制", "base64", "hex", "bin", "oct"],
+    iconName: "ArrowLeftRight",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/RadixConverter")),
+  },
+
+  // 2. 文本工具
   {
     id: "currency-to-chinese",
     name: "大写金额转换",
@@ -32,16 +71,6 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Coins",
     status: "stable",
     component: lazy(() => import("./tools/text/CurrencyToChinese")),
-  },
-  {
-    id: "json-formatter",
-    name: "JSON 格式化 / 校验",
-    description: "JSON 语法校验、精准错误定位、树形美化、Key 键排序与单行压缩",
-    category: "text",
-    tags: ["json", "格式化", "美化", "压缩", "校验", "minify", "beautify"],
-    iconName: "Braces",
-    status: "stable",
-    component: lazy(() => import("./tools/text/JsonFormatter")),
   },
   {
     id: "text-diff",
@@ -54,16 +83,6 @@ export const TOOLS: ToolDefinition[] = [
     component: lazy(() => import("./tools/text/TextDiff")),
   },
   {
-    id: "regex-tester",
-    name: "正则表达式测试",
-    description: "实时正则匹配高亮、捕获组分析、正则替换与常用表达式库",
-    category: "text",
-    tags: ["regex", "正则", "正则表达式", "replace", "匹配", "regexp"],
-    iconName: "Regex",
-    status: "stable",
-    component: lazy(() => import("./tools/text/RegexTester")),
-  },
-  {
     id: "text-analyzer",
     name: "字数统计与排版",
     description: "实时中英文字数统计、段落阅读时间预估、中英文空格美化（盘古排版）与全半角转换",
@@ -73,6 +92,8 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/text/TextAnalyzer")),
   },
+
+  // 3. 图片工具
   {
     id: "image-compressor",
     name: "图片压缩",
@@ -113,6 +134,8 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/image/QrCodeTool")),
   },
+
+  // 4. 加密工具
   {
     id: "base64-converter",
     name: "Base64 编解码",
