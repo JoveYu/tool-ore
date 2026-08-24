@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { convertToChineseCurrency } from "./currencyConverter";
-import { Copy, Check, RotateCcw, AlertCircle } from "lucide-react";
+import { Copy, Check, RotateCcw, AlertCircle, Coins } from "lucide-react";
 
 const PRESET_AMOUNTS = [
   "100",
@@ -31,17 +31,22 @@ export default function CurrencyToChinese() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header card */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xs">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              人民币大写金额转换
-            </h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              将数字金额快速转换为标准财务规范的人民币大写汉字（壹、贰、叁、肆、万、仟、佰、拾等）
-            </p>
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+              <Coins className="w-6 h-6" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                人民币大写金额转换
+              </h1>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                将数字金额快速转换为标准财务规范的人民币大写汉字（壹、贰、叁、肆、万、仟、佰、拾等）
+              </p>
+            </div>
           </div>
-          <span className="self-start sm:self-center inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/40">
+          <span className="self-start sm:self-center inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/40 shrink-0">
             财务规范
           </span>
         </div>

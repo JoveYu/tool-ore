@@ -3,7 +3,7 @@ import { encodeBase64, decodeBase64 } from "../src/tools/crypto/base64Utils";
 
 describe("Base64 Utilities", () => {
   it("encodes and decodes UTF-8 strings correctly", () => {
-    const raw = "Hello, Tool-Ore 在线工具! 🚀";
+    const raw = "Hello World 在线工具! 🚀";
     const encoded = encodeBase64(raw);
     expect(encoded).toBeDefined();
 

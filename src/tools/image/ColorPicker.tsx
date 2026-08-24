@@ -158,15 +158,20 @@ export default function ColorPicker() {
       {/* Header */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              颜色拾取器
-            </h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              高倍放大镜精准拾色，支持屏幕任意位置吸管取色，并提供 HEX, RGB, HSL, HSV, CMYK 多格式换算
-            </p>
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+              <Pipette className="w-6 h-6" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                颜色拾取器
+              </h1>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                高倍放大镜精准拾色，支持屏幕任意位置吸管取色，并提供 HEX, RGB, HSL, HSV, CMYK 多格式换算
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {isEyeDropperSupported && (
               <button
                 onClick={handleNativeEyeDropper}

@@ -16,6 +16,7 @@ import {
   QrCode,
   Coins,
   Pipette,
+  Regex,
   Wrench,
   LucideIcon,
 } from "lucide-react";
@@ -37,6 +38,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   QrCode,
   Coins,
   Pipette,
+  Regex,
   Wrench,
 };
 

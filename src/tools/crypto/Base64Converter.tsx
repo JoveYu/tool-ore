@@ -17,7 +17,7 @@ type Mode = "encode" | "decode" | "file";
 
 export default function Base64Converter() {
   const [mode, setMode] = useState<Mode>("encode");
-  const [inputText, setInputText] = useState<string>("Hello, Tool-Ore 在线工具!");
+  const [inputText, setInputText] = useState<string>("Hello World");
   const [urlSafe, setUrlSafe] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -75,20 +75,30 @@ export default function Base64Converter() {
       {/* Header */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              Base64 编解码转换
-            </h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              支持 UTF-8 文本编码/解码、URL 安全模式（URL-Safe）以及任意文件的 Base64 DataURI 转换
-            </p>
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+              <Binary className="w-6 h-6" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Base64 编解码转换
+              </h1>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+                支持 UTF-8 文本编码/解码、URL 安全模式（URL-Safe）以及任意文件的 Base64 DataURI 转换
+              </p>
+            </div>
           </div>
 
           {/* Mode Switch Tabs */}
-          <div className="grid grid-cols-3 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-medium self-start sm:self-center">
+          <div className="grid grid-cols-3 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-medium self-start sm:self-center shrink-0">
             <button
-              onClick={() => setMode("encode")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              onClick={() => {
+                if (mode === "decode" && textOutput.result && !textOutput.error) {
+                  setInputText(textOutput.result);
+                }
+                setMode("encode");
+              }}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 mode === "encode"
                   ? "bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs font-bold"
                   : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
@@ -97,8 +107,13 @@ export default function Base64Converter() {
               文本编码
             </button>
             <button
-              onClick={() => setMode("decode")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              onClick={() => {
+                if (mode === "encode" && textOutput.result && !textOutput.error) {
+                  setInputText(textOutput.result);
+                }
+                setMode("decode");
+              }}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 mode === "decode"
                   ? "bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs font-bold"
                   : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
@@ -108,7 +123,7 @@ export default function Base64Converter() {
             </button>
             <button
               onClick={() => setMode("file")}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 mode === "file"
                   ? "bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs font-bold"
                   : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
