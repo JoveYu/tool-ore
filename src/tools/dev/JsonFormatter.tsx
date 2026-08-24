@@ -24,7 +24,7 @@ const SAMPLE_JSON = `{
     "颜色拾取器",
     "Base64 编解码",
     "哈希散列计算 (MD5, SHA-256, SM3)",
-    "JSON 格式化与校验",
+    "JSON 格式化",
     "文本比对与排版",
     "二维码生成与识别"
   ],
@@ -95,7 +95,7 @@ export default function JsonFormatter() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-                JSON 格式化与校验
+                JSON 格式化
               </h1>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                 提供 JSON 语法校验、精准错误定位、树形美化、Key 键排序与极速单行压缩

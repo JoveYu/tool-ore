@@ -32,7 +32,7 @@ export const TOOLS: ToolDefinition[] = [
   // 1. 开发工具
   {
     id: "json-formatter",
-    name: "JSON 格式化 / 校验",
+    name: "JSON 格式化",
     description: "JSON 语法校验、精准错误定位、树形美化、Key 键排序与单行压缩",
     category: "dev",
     tags: ["json", "格式化", "美化", "压缩", "校验", "minify", "beautify"],
@@ -133,6 +133,16 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "QrCode",
     status: "stable",
     component: lazy(() => import("./tools/image/QrCodeTool")),
+  },
+  {
+    id: "barcode-tool",
+    name: "条形码生成与识别",
+    description: "支持 CODE128、EAN-13、UPC 等标准条形码生成下载与本地扫码识别",
+    category: "image",
+    tags: ["barcode", "条形码", "条码", "一维码", "code128", "ean13", "upc", "扫码"],
+    iconName: "Barcode",
+    status: "stable",
+    component: lazy(() => import("./tools/image/BarcodeTool")),
   },
 
   // 4. 加密工具

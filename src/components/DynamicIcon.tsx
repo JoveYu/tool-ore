@@ -18,6 +18,7 @@ import {
   Pipette,
   Regex,
   Lock,
+  Barcode,
   Wrench,
   LucideIcon,
 } from "lucide-react";
@@ -41,6 +42,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Pipette,
   Regex,
   Lock,
+  Barcode,
   Wrench,
 };
 
