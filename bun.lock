@@ -12,6 +12,7 @@
         "clsx": "^2.1.1",
         "crypto-js": "^4.2.0",
         "diff": "^9.0.0",
+        "jsencrypt": "^3.5.4",
         "jsqr": "^1.4.0",
         "lucide-react": "^1.33.0",
         "pinyin-pro": "^3.29.3",
@@ -354,6 +355,8 @@
     "jiti": ["jiti@2.7.0", "https://registry.npmmirror.com/jiti/-/jiti-2.7.0.tgz", { "bin": { "jiti": "lib/jiti-cli.mjs" } }, "sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ=="],
 
     "jsbn": ["jsbn@1.1.0", "https://registry.npmmirror.com/jsbn/-/jsbn-1.1.0.tgz", {}, "sha512-4bYVV3aAMtDTTu4+xsDYa6sy9GyJ69/amsu9sYF2zqjiEoZA5xJi3BrfX3uY+/IekIu7MwdObdbDWpoZdBv3/A=="],
+
+    "jsencrypt": ["jsencrypt@3.5.4", "https://registry.npmmirror.com/jsencrypt/-/jsencrypt-3.5.4.tgz", {}, "sha512-kNjfYEMNASxrDGsmcSQh/rUTmcoRfSUkxnAz+MMywM8jtGu+fFEZ3nJjHM58zscVnwR0fYmG9sGkTDjqUdpiwA=="],
 
     "jsqr": ["jsqr@1.4.0", "https://registry.npmmirror.com/jsqr/-/jsqr-1.4.0.tgz", {}, "sha512-dxLob7q65Xg2DvstYkRpkYtmKm2sPJ9oFhrhmudT1dZvNFFTlroai3AWSpLey/w5vMcLBXRgOJsbXpdN9HzU/A=="],
 

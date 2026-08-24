@@ -133,6 +133,36 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/crypto/HashCalculator")),
   },
+  {
+    id: "symmetric-crypto",
+    name: "对称加解密",
+    description: "支持 AES、DES、3DES、RC4、Rabbit 与 SM4 对称加解密",
+    category: "crypto",
+    tags: ["aes", "des", "3des", "rc4", "sm4", "加密", "解密", "crypto", "cbc", "ecb"],
+    iconName: "Lock",
+    status: "stable",
+    component: lazy(() => import("./tools/crypto/SymmetricCrypto")),
+  },
+  {
+    id: "asymmetric-crypto",
+    name: "非对称加解密",
+    description: "支持 RSA (2048-bit) 与 SM2 密钥对生成、公钥加密与私钥解密",
+    category: "crypto",
+    tags: ["rsa", "sm2", "非对称", "公钥", "私钥", "加密", "解密", "密钥对", "keypair"],
+    iconName: "KeyRound",
+    status: "stable",
+    component: lazy(() => import("./tools/crypto/AsymmetricCrypto")),
+  },
+  {
+    id: "password-generator",
+    name: "密码生成器",
+    description: "基于密码学加密安全随机数生成高强度随机密码，支持批量与强度估算",
+    category: "crypto",
+    tags: ["密码", "密码生成", "随机密码", "password", "强密码", "安全密码"],
+    iconName: "KeyRound",
+    status: "stable",
+    component: lazy(() => import("./tools/crypto/PasswordGenerator")),
+  },
 ];
 
 export function getToolById(id: string): ToolDefinition | undefined {
