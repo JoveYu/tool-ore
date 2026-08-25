@@ -210,6 +210,16 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/dev/ScreenTester")),
   },
+  {
+    id: "xml-formatter",
+    name: "XML 格式化与校验",
+    description: "XML 树状节点换行缩进排版美化、DOMParser 语法错误定位与单行压缩",
+    category: "dev",
+    tags: ["xml", "xml格式化", "xml美化", "xml校验", "domparser", "minify"],
+    iconName: "CodeXml",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/XmlFormatter")),
+  },
 
   // 2. 文本工具
   {
@@ -413,6 +423,16 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Sparkles",
     status: "stable",
     component: lazy(() => import("./tools/image/FaviconGenerator")),
+  },
+  {
+    id: "exif-tool",
+    name: "图片 EXIF 查看与隐私清除",
+    description: "读取照片拍摄相机、镜头参数、GPS 坐标，并支持一键脱敏擦除隐私元数据",
+    category: "image",
+    tags: ["exif", "元数据", "gps定位", "相机参数", "照片信息", "清除exif", "脱敏"],
+    iconName: "Camera",
+    status: "stable",
+    component: lazy(() => import("./tools/image/ExifTool")),
   },
 
   // 4. 加密工具

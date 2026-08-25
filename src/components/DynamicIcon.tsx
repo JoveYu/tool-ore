@@ -42,6 +42,7 @@ import {
   Stamp,
   Scale,
   Radio,
+  Camera,
   Wrench,
   LucideIcon,
 } from "lucide-react";
@@ -89,6 +90,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Stamp,
   Scale,
   Radio,
+  Camera,
   Wrench,
 };
 
