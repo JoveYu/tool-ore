@@ -308,6 +308,16 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/doc/PdfTool")),
   },
+  {
+    id: "stamp-generator",
+    name: "电子印章生成",
+    description: "纯本地 Canvas 实时生成圆形企业公章、椭圆发票章与方形名章，支持做旧印泥质感与透明 PNG 导出",
+    category: "doc",
+    tags: ["印章", "电子公章", "合同章", "发票章", "私章", "stamp", "水印印章"],
+    iconName: "Stamp",
+    status: "stable",
+    component: lazy(() => import("./tools/doc/StampGenerator")),
+  },
 
   // ── 4. 编码转换 (convert) ──
   {
@@ -431,6 +441,16 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Stamp",
     status: "stable",
     component: lazy(() => import("./tools/image/ImageWatermark")),
+  },
+  {
+    id: "image-chroma-key",
+    name: "证件照换底色",
+    description: "纯本地离线色度抠图，红底/蓝底/白底一键转换、边缘去杂色与 6 寸排版打印生成",
+    category: "image",
+    tags: ["证件照", "换底色", "抠图", "红底转蓝底", "蓝底转白底", "chromakey", "排版打印"],
+    iconName: "Layers",
+    status: "stable",
+    component: lazy(() => import("./tools/image/ImageChromaKey")),
   },
   {
     id: "exif-tool",
