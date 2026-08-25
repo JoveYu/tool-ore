@@ -131,7 +131,7 @@ export default function TextDiff() {
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-                原始文本 (Original / Old)
+                原始文本
               </label>
               <span className="text-[11px] text-slate-400 font-mono">
                 {oldText.length} 字符 · {oldText.split("\n").length} 行
@@ -150,7 +150,7 @@ export default function TextDiff() {
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                修改后文本 (Modified / New)
+                修改后文本
               </label>
               <span className="text-[11px] text-slate-400 font-mono">
                 {newText.length} 字符 · {newText.split("\n").length} 行

@@ -252,7 +252,7 @@ export default function QrCodeTool() {
               {/* Error correction level */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                  容错纠错级别 (Error Correction)
+                  容错纠错级别
                 </label>
                 <div className="grid grid-cols-4 gap-1.5 text-xs font-medium">
                   {[

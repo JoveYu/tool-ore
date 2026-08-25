@@ -168,7 +168,7 @@ export default function RegexTester() {
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs space-y-4">
         <div className="flex items-center justify-between text-xs">
           <label className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-            正则表达式 (Regular Expression)
+            正则表达式
           </label>
           <button
             onClick={() => handleCopy("regex", `/${pattern}/${flagsString}`)}
@@ -247,7 +247,7 @@ export default function RegexTester() {
         <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col">
           <div className="flex items-center justify-between">
             <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-              测试文本 (Test String)
+              测试文本
             </label>
             <button
               onClick={handleClear}
@@ -330,7 +330,7 @@ export default function RegexTester() {
         <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
             <Replace className="w-4 h-4 text-indigo-500" />
-            <span>正则替换测试 (Replace)</span>
+            <span>正则替换测试</span>
           </div>
 
           <label className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 cursor-pointer select-none">

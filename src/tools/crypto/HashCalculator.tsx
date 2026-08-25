@@ -273,7 +273,7 @@ export default function HashCalculator() {
                   onChange={(e) => setUppercase(e.target.checked)}
                   className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
                 />
-                <span>大写输出 (HEX)</span>
+                <span>大写输出</span>
               </label>
             </div>
 
@@ -283,7 +283,7 @@ export default function HashCalculator() {
                   <tr className="border-b border-slate-100 dark:border-slate-800 text-[11px] text-slate-400 uppercase bg-slate-50/30 dark:bg-slate-800/10">
                     <th className="py-2.5 px-4 font-semibold w-28">算法</th>
                     <th className="py-2.5 px-2 font-semibold w-16 text-center">位数</th>
-                    <th className="py-2.5 px-4 font-semibold">哈希值 (Hash Digest)</th>
+                    <th className="py-2.5 px-4 font-semibold">哈希值</th>
                     <th className="py-2.5 px-4 font-semibold w-20 text-right">操作</th>
                   </tr>
                 </thead>

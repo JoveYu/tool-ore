@@ -138,7 +138,7 @@ export function encryptAsymmetric(
 ): AsymmetricProcessResult {
   if (!text) return { result: "" };
   if (!options.key.trim()) {
-    return { result: "", error: "请输入公钥 (Public Key)" };
+    return { result: "", error: "请输入公钥" };
   }
 
   const outputFormat = options.outputFormat || "Base64";
@@ -188,7 +188,7 @@ export function decryptAsymmetric(
 ): AsymmetricProcessResult {
   if (!ciphertext.trim()) return { result: "" };
   if (!options.key.trim()) {
-    return { result: "", error: "请输入私钥 (Private Key)" };
+    return { result: "", error: "请输入私钥" };
   }
 
   const clean = ciphertext.trim();

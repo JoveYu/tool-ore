@@ -88,7 +88,7 @@ function parseKeyAndIv(key: string, iv?: string, blockSizeBytes = 16) {
 export function encryptText(text: string, options: CryptoOptions): CryptoProcessResult {
   if (!text) return { result: "" };
   if (!options.key) {
-    return { result: "", error: "请输入加密密钥 (Key)" };
+    return { result: "", error: "请输入加密密钥" };
   }
 
   try {
@@ -168,7 +168,7 @@ export function encryptText(text: string, options: CryptoOptions): CryptoProcess
 export function decryptText(ciphertext: string, options: CryptoOptions): CryptoProcessResult {
   if (!ciphertext.trim()) return { result: "" };
   if (!options.key) {
-    return { result: "", error: "请输入解密密钥 (Key)" };
+    return { result: "", error: "请输入解密密钥" };
   }
 
   const clean = ciphertext.trim();

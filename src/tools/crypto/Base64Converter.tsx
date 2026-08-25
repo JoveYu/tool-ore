@@ -84,7 +84,7 @@ export default function Base64Converter() {
                 Base64 编解码转换
               </h1>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                支持 UTF-8 文本编码/解码、URL 安全模式（URL-Safe）以及任意文件的 Base64 DataURI 转换
+                支持 UTF-8 文本编码/解码、URL 安全模式以及任意文件的 Base64 DataURI 转换
               </p>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function Base64Converter() {
           <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col">
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-                {mode === "encode" ? "输入原始明文 (UTF-8)" : "输入 Base64 编码字符串"}
+                {mode === "encode" ? "输入原始明文" : "输入 Base64 编码字符串"}
               </label>
               <div className="flex items-center gap-2">
                 <button

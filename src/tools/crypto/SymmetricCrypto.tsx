@@ -146,7 +146,7 @@ export default function SymmetricCrypto() {
         {/* Algorithm Selectors */}
         <div className="space-y-1.5">
           <label className="text-xs font-medium text-slate-700 dark:text-slate-300">
-            加密算法 (Algorithm)
+            加密算法
           </label>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {[
@@ -178,7 +178,7 @@ export default function SymmetricCrypto() {
             <div className="flex items-center justify-between text-xs font-medium text-slate-700 dark:text-slate-300">
               <span className="flex items-center gap-1">
                 <Key className="w-3.5 h-3.5 text-indigo-500" />
-                密钥 (Secret Key)
+                密钥
               </span>
               <span className="text-[10px] text-slate-400 font-mono">
                 长度: {key.length} 字符
@@ -196,7 +196,7 @@ export default function SymmetricCrypto() {
           {needsIv ? (
             <div className="space-y-1.5">
               <div className="flex items-center justify-between text-xs font-medium text-slate-700 dark:text-slate-300">
-                <span>初始向量 (IV)</span>
+                <span>初始向量</span>
                 <span className="text-[10px] text-slate-400 font-mono">
                   {algorithm === "DES" || algorithm === "TripleDES" ? "8 字节" : "16 字节"}
                 </span>
@@ -211,7 +211,7 @@ export default function SymmetricCrypto() {
             </div>
           ) : (
             <div className="space-y-1.5 opacity-40 select-none">
-              <div className="text-xs font-medium text-slate-400">初始向量 (IV)</div>
+              <div className="text-xs font-medium text-slate-400">初始向量</div>
               <div className="w-full px-3.5 py-2.5 text-xs font-mono rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400">
                 当前模式无需 IV
               </div>
@@ -224,7 +224,7 @@ export default function SymmetricCrypto() {
           {/* Mode */}
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-slate-700 dark:text-slate-300">
-              分组模式 (Mode)
+              分组模式
             </label>
             <select
               value={mode}
@@ -243,7 +243,7 @@ export default function SymmetricCrypto() {
           {/* Padding */}
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-slate-700 dark:text-slate-300">
-              填充方式 (Padding)
+              填充方式
             </label>
             <select
               value={padding}
@@ -262,7 +262,7 @@ export default function SymmetricCrypto() {
           {/* Output/Input Format */}
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-slate-700 dark:text-slate-300">
-              {action === "encrypt" ? "密文输出格式 (Output)" : "密文输入格式 (Input)"}
+              {action === "encrypt" ? "密文输出格式" : "密文输入格式"}
             </label>
             {action === "encrypt" ? (
               <div className="grid grid-cols-2 gap-2">
@@ -307,7 +307,7 @@ export default function SymmetricCrypto() {
         <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col">
           <div className="flex items-center justify-between">
             <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-              {action === "encrypt" ? "待加密明文 (Plaintext)" : "待解密密文 (Ciphertext)"}
+              {action === "encrypt" ? "待加密明文" : "待解密密文"}
             </label>
 
             <button

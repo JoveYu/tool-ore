@@ -185,19 +185,19 @@ export function convertRadix(
 export function getRadixName(radix: number): string {
   switch (radix) {
     case 2:
-      return "二进制 (Binary)";
+      return "二进制";
     case 8:
-      return "八进制 (Octal)";
+      return "八进制";
     case 10:
-      return "十进制 (Decimal)";
+      return "十进制";
     case 16:
-      return "十六进制 (Hex)";
+      return "十六进制";
     case 32:
-      return "三十二进制 (Base32)";
+      return "三十二进制";
     case 36:
-      return "三十六进制 (Base36)";
+      return "三十六进制";
     case 64:
-      return "六十四进制 (Base64)";
+      return "六十四进制";
     default:
       return `${radix} 进制`;
   }

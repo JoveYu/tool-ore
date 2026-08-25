@@ -160,7 +160,7 @@ export default function BarcodeTool() {
             {/* Format Selector */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-                条形码格式 (Standard)
+                条形码格式
               </label>
               <select
                 value={format}
@@ -178,7 +178,7 @@ export default function BarcodeTool() {
             {/* Input Content */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-                条形码内容 (Content)
+                条形码内容
               </label>
               <input
                 type="text"
@@ -201,7 +201,7 @@ export default function BarcodeTool() {
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium text-slate-700 dark:text-slate-300">
-                    条码高度 (Height)
+                    条码高度
                   </span>
                   <span className="font-mono text-slate-400">{height}px</span>
                 </div>
@@ -219,7 +219,7 @@ export default function BarcodeTool() {
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium text-slate-700 dark:text-slate-300">
-                    条宽粗细 (Bar Width)
+                    条宽粗细
                   </span>
                   <span className="font-mono text-slate-400">{width}x</span>
                 </div>

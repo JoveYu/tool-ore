@@ -71,7 +71,7 @@ export default function RadixConverter() {
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
             <label className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-              当前输入进制 (From Radix)
+              当前输入进制
             </label>
             {inputValue && (
               <button

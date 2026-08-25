@@ -35,7 +35,7 @@ export const REGEX_PRESETS: RegexPreset[] = [
   },
   {
     category: "常用验证",
-    name: "电子邮箱 (Email)",
+    name: "电子邮箱",
     pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
     flags: "g",
     description: "匹配标准电子邮件地址格式",
@@ -67,7 +67,7 @@ export const REGEX_PRESETS: RegexPreset[] = [
   },
   {
     category: "网络与开发",
-    name: "十六进制颜色码 (HEX)",
+    name: "十六进制颜色码",
     pattern: "#(?:[0-9a-fA-F]{3}){1,2}\\b",
     flags: "g",
     description: "匹配 #RGB 或 #RRGGBB 十六进制颜色代码",
@@ -75,7 +75,7 @@ export const REGEX_PRESETS: RegexPreset[] = [
   },
   {
     category: "文本字符",
-    name: "中文字符 (汉字)",
+    name: "中文字符",
     pattern: "[\\u4e00-\\u9fa5]+",
     flags: "g",
     description: "匹配连续的一个或多个 Unicode 中文汉字",

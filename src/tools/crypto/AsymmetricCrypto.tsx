@@ -362,7 +362,7 @@ export default function AsymmetricCrypto() {
         <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col">
           <div className="flex items-center justify-between">
             <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-              {action === "encrypt" ? "待加密明文 (Plaintext)" : "待解密密文 (Ciphertext)"}
+              {action === "encrypt" ? "待加密明文" : "待解密密文"}
             </label>
 
             <button

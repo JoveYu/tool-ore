@@ -245,12 +245,12 @@ export default function JsonFormatter() {
             {processedResult.isValid ? (
               <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-sans font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                语法校验有效 (Valid JSON)
+                语法校验有效
               </span>
             ) : (
               <span className="flex items-center gap-1 text-rose-500 font-sans font-medium">
                 <AlertCircle className="w-3.5 h-3.5" />
-                格式无效 (Invalid)
+                格式无效
               </span>
             )}
           </div>

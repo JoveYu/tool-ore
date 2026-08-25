@@ -96,7 +96,7 @@ export default function PasswordGenerator() {
               随机密码生成器
             </h1>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-              基于浏览器底层加密安全随机数（Crypto API）生成强密码，支持批量生成与破解耗时估算
+              基于浏览器底层加密安全随机数生成强密码，支持批量生成与破解耗时估算
             </p>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function PasswordGenerator() {
           <div className="space-y-2.5">
             <div className="flex items-center justify-between text-xs">
               <label className="font-medium text-slate-700 dark:text-slate-300">
-                密码长度 (Length)
+                密码长度
               </label>
               <span className="font-mono font-bold text-base text-indigo-600 dark:text-indigo-400">
                 {length} 位
