@@ -240,6 +240,16 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/dev/HttpRequestTester")),
   },
+  {
+    id: "code-to-image",
+    name: "代码美化截图卡片",
+    description: "将代码片段一键生成高颜值 Ray.so / Carbon 风格分享卡片与高清 PNG 导出",
+    category: "dev",
+    tags: ["代码截图", "code2img", "carbon", "ray.so", "代码美化", "分享卡片"],
+    iconName: "Camera",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/CodeToImage")),
+  },
 
   // 2. 文本工具
   {
@@ -463,6 +473,16 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Camera",
     status: "stable",
     component: lazy(() => import("./tools/image/ExifTool")),
+  },
+  {
+    id: "svg-path-editor",
+    name: "SVG 路径变换与调整",
+    description: "SVG Path 路径实时平移、缩放、水平/垂直翻转、坐标包围盒计算与代码导出",
+    category: "image",
+    tags: ["svg", "path", "svg变换", "路径平移", "路径缩放", "镜像翻转"],
+    iconName: "Sparkles",
+    status: "stable",
+    component: lazy(() => import("./tools/image/SvgPathEditor")),
   },
 
   // 4. 加密工具
