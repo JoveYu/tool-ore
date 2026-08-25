@@ -41,23 +41,23 @@ export const Dashboard: React.FC<DashboardProps> = ({ onSelectTool }) => {
                     className="group relative p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 hover:border-indigo-400/80 dark:hover:border-indigo-500/80 hover:shadow-md hover:shadow-indigo-500/5 transition-all text-left flex flex-col justify-between cursor-pointer"
                   >
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div className="w-8 h-8 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/80 flex items-center justify-center text-slate-700 dark:text-slate-300 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-950/50 dark:group-hover:text-indigo-400 transition-colors shrink-0">
-                          <DynamicIcon name={tool.iconName} className="w-4 h-4" />
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="w-7 h-7 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/80 flex items-center justify-center text-slate-700 dark:text-slate-300 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-950/50 dark:group-hover:text-indigo-400 transition-colors shrink-0">
+                            <DynamicIcon name={tool.iconName} className="w-3.5 h-3.5" />
+                          </div>
+                          <h3 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
+                            {tool.name}
+                          </h3>
                         </div>
-                        <span className="text-slate-300 dark:text-slate-600 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        <span className="text-slate-300 dark:text-slate-600 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors shrink-0">
                           <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
                         </span>
                       </div>
 
-                      <div>
-                        <h3 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
-                          {tool.name}
-                        </h3>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
-                          {tool.description}
-                        </p>
-                      </div>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                        {tool.description}
+                      </p>
                     </div>
                   </button>
                 ))}
