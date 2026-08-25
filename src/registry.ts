@@ -204,6 +204,26 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/dev/CidrCalculator")),
   },
+  {
+    id: "websocket-tester",
+    name: "WebSocket 测试",
+    description: "纯前端 WebSocket 长连接调试，支持 JSON 自动排版、心跳保活与实时上下行日志",
+    category: "dev",
+    tags: ["websocket", "ws", "wss", "长连接", "心跳", "socket", "通信测试"],
+    iconName: "Radio",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/WebSocketTester")),
+  },
+  {
+    id: "har-viewer",
+    name: "HAR 抓包日志分析",
+    description: "纯本地解析浏览器 F12 网络请求抓包文件，支持请求瀑布流分析与接口排错",
+    category: "dev",
+    tags: ["har", "抓包", "网络分析", "waterfall", "devtools", "http-archive", "性能分析"],
+    iconName: "Network",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/HarViewer")),
+  },
 
   // ── 2. 文本处理 (text) ──
   {
