@@ -46,6 +46,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
     return initial;
   });
 
+  // 当选中某个工具时，自动展开对应分类
+  React.useEffect(() => {
+    if (currentToolId) {
+      const currentTool = TOOLS.find((t) => t.id === currentToolId);
+      if (currentTool) {
+        setExpandedCategories((prev) => ({
+          ...prev,
+          [currentTool.category]: true,
+        }));
+      }
+    }
+  }, [currentToolId]);
+
   const toggleCategory = (catId: string) => {
     setExpandedCategories((prev) => ({ ...prev, [catId]: !prev[catId] }));
   };
