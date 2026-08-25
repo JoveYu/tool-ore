@@ -31,9 +31,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onCloseMobile,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  // By default all categories are expanded
+  // 默认分类全部收起；若有当前选中的工具，则展开对应分类
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>(() => {
-    return CATEGORIES.reduce((acc, cat) => ({ ...acc, [cat.id]: true }), {});
+    const initial: Record<string, boolean> = {};
+    CATEGORIES.forEach((cat) => {
+      initial[cat.id] = false;
+    });
+    if (currentToolId) {
+      const currentTool = TOOLS.find((t) => t.id === currentToolId);
+      if (currentTool) {
+        initial[currentTool.category] = true;
+      }
+    }
+    return initial;
   });
 
   const toggleCategory = (catId: string) => {
