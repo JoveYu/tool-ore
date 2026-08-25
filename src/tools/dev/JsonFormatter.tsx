@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { formatJson, minifyJson, JsonFormatOptions } from "./jsonUtils";
 import { formatFileSize } from "../image/imageUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   Braces,
   Copy,
@@ -13,6 +14,8 @@ import {
   CheckCircle2,
   FileCode,
   Sparkles,
+  Eye,
+  Edit3,
 } from "lucide-react";
 
 const SAMPLE_JSON = `{
@@ -46,6 +49,7 @@ export default function JsonFormatter() {
   const [sortKeys, setSortKeys] = useState<boolean>(false);
   const [unescapeUnicode, setUnescapeUnicode] = useState<boolean>(true);
   const [copied, setCopied] = useState<boolean>(false);
+  const [viewMode, setViewMode] = useState<"edit" | "highlight">("highlight");
 
   const options: JsonFormatOptions = useMemo(
     () => ({
@@ -173,15 +177,41 @@ export default function JsonFormatter() {
 
           {/* Quick Actions */}
           <div className="flex items-center gap-2 ml-auto">
+            {/* View Mode Toggle */}
+            <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-white dark:bg-slate-800">
+              <button
+                onClick={() => setViewMode("highlight")}
+                className={`px-2 py-0.5 rounded-md font-sans text-xs transition-colors flex items-center gap-1 cursor-pointer ${
+                  viewMode === "highlight"
+                    ? "bg-indigo-600 text-white font-bold"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
+                }`}
+              >
+                <Eye className="w-3 h-3" />
+                <span>高亮视图</span>
+              </button>
+              <button
+                onClick={() => setViewMode("edit")}
+                className={`px-2 py-0.5 rounded-md font-sans text-xs transition-colors flex items-center gap-1 cursor-pointer ${
+                  viewMode === "edit"
+                    ? "bg-indigo-600 text-white font-bold"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
+                }`}
+              >
+                <Edit3 className="w-3 h-3" />
+                <span>快速编辑</span>
+              </button>
+            </div>
+
             <button
               onClick={() => setInputJson(SAMPLE_JSON)}
-              className="px-2.5 py-1 text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              className="px-2.5 py-1 text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
             >
               载入示例
             </button>
             <button
               onClick={handleClear}
-              className="px-2.5 py-1 text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 flex items-center gap-1 transition-colors"
+              className="px-2.5 py-1 text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 flex items-center gap-1 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               清空
@@ -207,19 +237,24 @@ export default function JsonFormatter() {
         </div>
 
         {/* Editor Body */}
-        <div className="relative min-h-[460px] flex flex-col">
-          <textarea
-            value={inputJson}
-            onChange={(e) => setInputJson(e.target.value)}
-            placeholder="请在此粘贴或输入需要格式化的 JSON 内容..."
-            spellCheck={false}
-            className={`flex-1 w-full p-4 font-mono text-xs sm:text-sm bg-transparent outline-none resize-none leading-relaxed select-all ${
-              !processedResult.isValid
-                ? "text-slate-900 dark:text-slate-100"
-                : "text-slate-900 dark:text-slate-100"
-            }`}
-            rows={18}
-          />
+        <div className="relative min-h-[460px] flex flex-col p-2">
+          {viewMode === "highlight" && processedResult.isValid ? (
+            <CodeViewer
+              code={processedResult.formattedText || inputJson}
+              language="json"
+              maxHeight="480px"
+              placeholder="请在此输入或粘贴 JSON 内容..."
+            />
+          ) : (
+            <textarea
+              value={inputJson}
+              onChange={(e) => setInputJson(e.target.value)}
+              placeholder="请在此粘贴或输入需要格式化的 JSON 内容..."
+              spellCheck={false}
+              className="flex-1 w-full p-4 font-mono text-xs sm:text-sm bg-transparent outline-none resize-none leading-relaxed select-all text-slate-900 dark:text-slate-100"
+              rows={18}
+            />
+          )}
 
           {/* Error Banner */}
           {!processedResult.isValid && processedResult.error && (

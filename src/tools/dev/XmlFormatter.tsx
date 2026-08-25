@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { formatXml, minifyXml, XmlFormatResult } from "./xmlUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   CodeXml,
   Copy,
@@ -216,12 +217,11 @@ export default function XmlFormatter() {
             </div>
           </div>
 
-          <textarea
-            rows={16}
-            readOnly
-            value={formattedResult.result}
+          <CodeViewer
+            code={formattedResult.result}
+            language="xml"
+            maxHeight="380px"
             placeholder="美化后的 XML 将实时呈现在此处..."
-            className="flex-1 w-full p-3.5 font-mono text-xs rounded-xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 text-indigo-950 dark:text-indigo-200 outline-none select-all resize-none leading-relaxed"
           />
 
           <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1 font-mono">

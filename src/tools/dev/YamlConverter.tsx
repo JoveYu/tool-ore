@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { yamlToJson, jsonToYaml, YamlConvertResult } from "./yamlUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   FileCode2,
   Copy,
@@ -271,12 +272,11 @@ tags:
             </div>
           </div>
 
-          <textarea
-            rows={16}
-            readOnly
-            value={converted.result}
+          <CodeViewer
+            code={converted.result}
+            language={mode === "yaml_to_json" ? "json" : "yaml"}
+            maxHeight="420px"
             placeholder="转换结果将实时展示在此处..."
-            className="flex-1 w-full p-3.5 font-mono text-xs rounded-xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white outline-none select-all resize-none leading-relaxed"
           />
 
           <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1">

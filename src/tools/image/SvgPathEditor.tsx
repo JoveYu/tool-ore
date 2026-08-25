@@ -4,6 +4,7 @@ import {
   SvgPathTransformOptions,
   PathBBox,
 } from "./svgPathUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   Sparkles,
   Copy,
@@ -313,11 +314,11 @@ export default function SvgPathEditor() {
                 </button>
               </div>
 
-              <textarea
-                rows={4}
-                readOnly
-                value={fullSvgCode}
-                className="w-full p-3 font-mono text-xs rounded-xl bg-slate-50/70 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 outline-none select-all resize-none leading-relaxed"
+              <CodeViewer
+                code={fullSvgCode}
+                language="xml"
+                maxHeight="160px"
+                showLineNumbers={false}
               />
             </div>
           </div>

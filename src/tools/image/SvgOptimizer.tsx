@@ -5,6 +5,7 @@ import {
   DEFAULT_SVG_OPTIONS,
   SvgOptimizeResult,
 } from "./svgOptimizerUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   FileCode,
   Copy,
@@ -375,11 +376,10 @@ export default function SvgOptimizer() {
               )}
             </div>
           ) : activeTab === "react" ? (
-            <textarea
-              rows={14}
-              readOnly
-              value={result.reactComponentCode}
-              className="flex-1 w-full p-3.5 font-mono text-xs rounded-xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white outline-none select-all resize-none leading-relaxed"
+            <CodeViewer
+              code={result.reactComponentCode}
+              language="typescript"
+              maxHeight="340px"
             />
           ) : activeTab === "datauri" ? (
             <div className="space-y-3 flex-1 flex flex-col">
@@ -404,11 +404,10 @@ export default function SvgOptimizer() {
               </div>
             </div>
           ) : (
-            <textarea
-              rows={14}
-              readOnly
-              value={result.optimizedSvg}
-              className="flex-1 w-full p-3.5 font-mono text-xs rounded-xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white outline-none select-all resize-none leading-relaxed break-all"
+            <CodeViewer
+              code={result.optimizedSvg}
+              language="xml"
+              maxHeight="340px"
             />
           )}
 

@@ -7,6 +7,7 @@ import {
   HTTP_PRESETS,
   sendHttpRequest,
 } from "./httpTesterUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   Send,
   Plus,
@@ -430,11 +431,11 @@ export default function HttpRequestTester() {
           )}
 
           {responseTab === "body" ? (
-            <textarea
-              rows={14}
-              readOnly
-              value={response.data || "无响应内容"}
-              className="w-full p-4 font-mono text-xs rounded-xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 text-indigo-950 dark:text-indigo-200 outline-none select-all resize-none leading-relaxed"
+            <CodeViewer
+              code={response.data}
+              language={response.isJson ? "json" : "plaintext"}
+              maxHeight="380px"
+              placeholder="无响应内容"
             />
           ) : (
             <div className="overflow-x-auto max-h-80 border border-slate-100 dark:border-slate-800 rounded-xl">

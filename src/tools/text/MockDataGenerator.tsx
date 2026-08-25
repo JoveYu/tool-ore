@@ -5,6 +5,7 @@ import {
   generateMockRecords,
   formatMockDataOutput,
 } from "./mockDataUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   TableProperties,
   Copy,
@@ -282,11 +283,10 @@ export default function MockDataGenerator() {
           </div>
         </div>
 
-        <textarea
-          rows={14}
-          readOnly
-          value={outputString}
-          className="w-full p-4 font-mono text-xs rounded-xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 text-indigo-950 dark:text-indigo-200 outline-none select-all resize-none leading-relaxed"
+        <CodeViewer
+          code={outputString}
+          language={formatType === "json" ? "json" : formatType === "sql" ? "sql" : "plaintext"}
+          maxHeight="380px"
         />
       </div>
     </div>

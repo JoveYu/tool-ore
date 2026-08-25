@@ -4,6 +4,7 @@ import {
   generateCodeFromCurl,
   TargetLanguage,
 } from "./curlUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   Terminal,
   Copy,
@@ -50,6 +51,29 @@ export default function CurlConverter() {
     { id: "rust_reqwest", label: "Rust (reqwest)", group: "系统级" },
     { id: "dart_http", label: "Dart / Flutter (http)", group: "移动端" },
   ];
+
+  const getLanguageMode = (lang: TargetLanguage): string => {
+    switch (lang) {
+      case "js_fetch":
+      case "js_axios":
+        return "javascript";
+      case "python_requests":
+      case "python_httpx":
+        return "python";
+      case "go_http":
+        return "go";
+      case "java_httpclient":
+        return "java";
+      case "php_curl":
+        return "php";
+      case "rust_reqwest":
+        return "rust";
+      case "dart_http":
+        return "dart";
+      default:
+        return "javascript";
+    }
+  };
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
@@ -177,11 +201,11 @@ export default function CurlConverter() {
             </button>
           </div>
 
-          <textarea
-            rows={14}
-            readOnly
-            value={generatedCode}
-            className="flex-1 w-full p-3.5 font-mono text-xs rounded-xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 text-indigo-950 dark:text-indigo-200 outline-none select-all resize-none leading-relaxed"
+          <CodeViewer
+            code={generatedCode}
+            language={getLanguageMode(targetLang)}
+            maxHeight="380px"
+            placeholder="转换生成的代码将展现在此处..."
           />
 
           <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1 font-mono">

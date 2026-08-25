@@ -6,6 +6,7 @@ import {
   buildMultiSizeIco,
   generateFaviconHtmlTags,
 } from "./faviconUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   Sparkles,
   Upload,
@@ -307,9 +308,12 @@ export default function FaviconGenerator() {
           </button>
         </div>
 
-        <pre className="p-4 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 font-mono text-xs text-indigo-950 dark:text-indigo-200 overflow-x-auto select-all leading-relaxed">
-          {htmlTags}
-        </pre>
+        <CodeViewer
+          code={htmlTags}
+          language="html"
+          maxHeight="220px"
+          showLineNumbers={false}
+        />
       </div>
     </div>
   );

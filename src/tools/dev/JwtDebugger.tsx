@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { parseJwt, verifyHs256Signature, base64UrlEncode } from "./jwtUtils";
+import { CodeViewer } from "../../components/CodeViewer";
 import {
   FileCode2,
   Copy,
@@ -276,9 +277,12 @@ export default function JwtDebugger() {
               </button>
             </div>
 
-            <pre className="flex-1 w-full p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-rose-950 dark:text-rose-200 font-mono text-xs leading-relaxed overflow-x-auto select-all">
-              {parsed.formattedHeader}
-            </pre>
+            <CodeViewer
+              code={parsed.formattedHeader}
+              language="json"
+              maxHeight="260px"
+              showLineNumbers={false}
+            />
           </div>
 
           {/* Payload */}
@@ -302,9 +306,12 @@ export default function JwtDebugger() {
               </button>
             </div>
 
-            <pre className="flex-1 w-full p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-indigo-950 dark:text-indigo-200 font-mono text-xs leading-relaxed overflow-x-auto select-all">
-              {parsed.formattedPayload}
-            </pre>
+            <CodeViewer
+              code={parsed.formattedPayload}
+              language="json"
+              maxHeight="260px"
+              showLineNumbers={false}
+            />
           </div>
         </div>
       )}
