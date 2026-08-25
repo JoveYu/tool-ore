@@ -320,23 +320,23 @@ export default function BarcodeTool() {
               )}
             </div>
 
-            <div className="w-full flex flex-col sm:flex-row items-center gap-2">
+            <div className="w-full grid grid-cols-2 gap-2">
               <button
                 onClick={handleDownload}
                 disabled={!barcodeDataUrl}
-                className="flex-1 w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all cursor-pointer whitespace-nowrap"
               >
-                <Download className="w-4 h-4" />
-                下载高清 PNG
+                <Download className="w-4 h-4 shrink-0" />
+                <span>下载 PNG</span>
               </button>
 
               <button
                 onClick={handleDownloadSvg}
                 disabled={!barcodeSvgUrl}
-                className="flex-1 w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200/80 dark:hover:bg-slate-700 disabled:opacity-40 text-slate-700 dark:text-slate-200 font-semibold text-xs border border-slate-200 dark:border-slate-700 transition-all cursor-pointer"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200/80 dark:hover:bg-slate-700 disabled:opacity-40 text-slate-700 dark:text-slate-200 font-semibold text-xs border border-slate-200 dark:border-slate-700 transition-all cursor-pointer whitespace-nowrap"
               >
-                <Download className="w-4 h-4" />
-                下载矢量 SVG
+                <Download className="w-4 h-4 shrink-0" />
+                <span>下载 SVG</span>
               </button>
             </div>
           </div>

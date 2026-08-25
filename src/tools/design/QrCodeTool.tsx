@@ -334,10 +334,10 @@ export default function QrCodeTool() {
             <button
               onClick={handleDownload}
               disabled={!qrDataUrl}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all cursor-pointer whitespace-nowrap"
             >
               <Download className="w-4 h-4" />
-              下载高清二维码 (PNG)
+              <span>下载二维码 PNG</span>
             </button>
           </div>
         </div>
