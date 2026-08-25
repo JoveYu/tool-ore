@@ -19,10 +19,11 @@ export interface BarcodeGenerateOptions {
   margin?: number;
   background?: string;
   lineColor?: string;
+  scale?: number; // 高清渲染倍率，默认 3x
 }
 
 /**
- * 纯前端 Canvas 生成条形码 DataURL
+ * 纯前端 Canvas 生成高分辨率条形码 DataURL (PNG)
  */
 export function generateBarcode(
   text: string,
@@ -30,9 +31,38 @@ export function generateBarcode(
 ): string {
   if (!text.trim()) return "";
 
+  const scale = options.scale ?? 3;
   const canvas = document.createElement("canvas");
   try {
     JsBarcode(canvas, text.trim(), {
+      format: options.format || "CODE128",
+      width: (options.width ?? 2) * scale,
+      height: (options.height ?? 80) * scale,
+      displayValue: options.displayValue ?? true,
+      fontSize: (options.fontSize ?? 16) * scale,
+      margin: (options.margin ?? 10) * scale,
+      background: options.background || "#FFFFFF",
+      lineColor: options.lineColor || "#000000",
+    });
+
+    return canvas.toDataURL("image/png");
+  } catch (err: any) {
+    throw new Error(err?.message || "条形码生成失败，请检查输入内容是否符合该格式规则");
+  }
+}
+
+/**
+ * 纯前端生成矢量条形码 SVG DataURL
+ */
+export function generateBarcodeSvg(
+  text: string,
+  options: BarcodeGenerateOptions
+): string {
+  if (!text.trim()) return "";
+
+  const svgNode = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  try {
+    JsBarcode(svgNode, text.trim(), {
       format: options.format || "CODE128",
       width: options.width ?? 2,
       height: options.height ?? 80,
@@ -43,7 +73,8 @@ export function generateBarcode(
       lineColor: options.lineColor || "#000000",
     });
 
-    return canvas.toDataURL("image/png");
+    const xml = new XMLSerializer().serializeToString(svgNode);
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(xml)}`;
   } catch (err: any) {
     throw new Error(err?.message || "条形码生成失败，请检查输入内容是否符合该格式规则");
   }

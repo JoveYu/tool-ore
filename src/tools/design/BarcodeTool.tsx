@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   generateBarcode,
+  generateBarcodeSvg,
   decodeBarcodeFromFile,
   BarcodeFormat,
 } from "./barcodeUtils";
@@ -44,6 +45,7 @@ export default function BarcodeTool() {
   const [background, setBackground] = useState<string>("#FFFFFF");
 
   const [barcodeDataUrl, setBarcodeDataUrl] = useState<string>("");
+  const [barcodeSvgUrl, setBarcodeSvgUrl] = useState<string>("");
   const [generateError, setGenerateError] = useState<string | null>(null);
 
   // Scanner states
@@ -61,12 +63,22 @@ export default function BarcodeTool() {
   useEffect(() => {
     if (mode !== "generate" || !value.trim()) {
       setBarcodeDataUrl("");
+      setBarcodeSvgUrl("");
       setGenerateError(null);
       return;
     }
 
     try {
-      const url = generateBarcode(value, {
+      const pngUrl = generateBarcode(value, {
+        format,
+        height,
+        width,
+        displayValue,
+        lineColor,
+        background,
+        scale: 3,
+      });
+      const svgUrl = generateBarcodeSvg(value, {
         format,
         height,
         width,
@@ -74,10 +86,12 @@ export default function BarcodeTool() {
         lineColor,
         background,
       });
-      setBarcodeDataUrl(url);
+      setBarcodeDataUrl(pngUrl);
+      setBarcodeSvgUrl(svgUrl);
       setGenerateError(null);
     } catch (err: any) {
       setBarcodeDataUrl("");
+      setBarcodeSvgUrl("");
       setGenerateError(err?.message || "条形码格式不匹配，无法生成");
     }
   }, [mode, format, value, height, width, displayValue, lineColor, background]);
@@ -87,6 +101,14 @@ export default function BarcodeTool() {
     const link = document.createElement("a");
     link.href = barcodeDataUrl;
     link.download = `barcode-${format}-${Date.now()}.png`;
+    link.click();
+  };
+
+  const handleDownloadSvg = () => {
+    if (!barcodeSvgUrl) return;
+    const link = document.createElement("a");
+    link.href = barcodeSvgUrl;
+    link.download = `barcode-${format}-${Date.now()}.svg`;
     link.click();
   };
 
@@ -284,11 +306,12 @@ export default function BarcodeTool() {
             </div>
 
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/60 dark:border-slate-800 flex items-center justify-center w-full min-h-[160px] overflow-hidden shadow-inner">
-              {barcodeDataUrl ? (
+              {barcodeSvgUrl || barcodeDataUrl ? (
                 <img
-                  src={barcodeDataUrl}
+                  src={barcodeSvgUrl || barcodeDataUrl}
                   alt="生成的条形码"
                   className="max-h-full max-w-full object-contain rounded-md"
+                  style={{ imageRendering: "pixelated" }}
                 />
               ) : (
                 <div className="text-center text-xs text-slate-400">
@@ -297,14 +320,25 @@ export default function BarcodeTool() {
               )}
             </div>
 
-            <button
-              onClick={handleDownload}
-              disabled={!barcodeDataUrl}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
-            >
-              <Download className="w-4 h-4" />
-              下载高清条形码 (PNG)
-            </button>
+            <div className="w-full flex flex-col sm:flex-row items-center gap-2">
+              <button
+                onClick={handleDownload}
+                disabled={!barcodeDataUrl}
+                className="flex-1 w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
+              >
+                <Download className="w-4 h-4" />
+                下载高清 PNG
+              </button>
+
+              <button
+                onClick={handleDownloadSvg}
+                disabled={!barcodeSvgUrl}
+                className="flex-1 w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200/80 dark:hover:bg-slate-700 disabled:opacity-40 text-slate-700 dark:text-slate-200 font-semibold text-xs border border-slate-200 dark:border-slate-700 transition-all cursor-pointer"
+              >
+                <Download className="w-4 h-4" />
+                下载矢量 SVG
+              </button>
+            </div>
           </div>
         </div>
       ) : (

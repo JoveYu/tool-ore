@@ -87,35 +87,64 @@ export default function ColorPicker() {
     if (zoomCanvas) {
       const zCtx = zoomCanvas.getContext("2d");
       if (zCtx) {
+        const dpr = Math.max(window.devicePixelRatio || 1, 2);
+        const rect = zoomCanvas.getBoundingClientRect();
+        const displayWidth = Math.round(rect.width || 200);
+        const displayHeight = Math.round(rect.height || 200);
+        const targetWidth = displayWidth * dpr;
+        const targetHeight = displayHeight * dpr;
+
+        if (zoomCanvas.width !== targetWidth || zoomCanvas.height !== targetHeight) {
+          zoomCanvas.width = targetWidth;
+          zoomCanvas.height = targetHeight;
+        }
+
         zCtx.imageSmoothingEnabled = false;
-        zCtx.clearRect(0, 0, zoomCanvas.width, zoomCanvas.height);
+        zCtx.clearRect(0, 0, targetWidth, targetHeight);
 
-        const zoomSize = 11; // 11x11 square around cursor
-        const half = Math.floor(zoomSize / 2);
-        const sx = Math.max(0, Math.min(canvas.width - zoomSize, x - half));
-        const sy = Math.max(0, Math.min(canvas.height - zoomSize, y - half));
+        const zoomGrid = 11; // 11x11 square around cursor
+        const half = Math.floor(zoomGrid / 2);
+        const cellW = targetWidth / zoomGrid;
+        const cellH = targetHeight / zoomGrid;
 
-        zCtx.drawImage(
-          canvas,
-          sx,
-          sy,
-          zoomSize,
-          zoomSize,
-          0,
-          0,
-          zoomCanvas.width,
-          zoomCanvas.height
-        );
+        const sx = x - half;
+        const sy = y - half;
 
-        // Center crosshair
-        const center = zoomCanvas.width / 2;
-        const cell = zoomCanvas.width / zoomSize;
-        zCtx.strokeStyle = "rgba(255, 255, 255, 0.9)";
-        zCtx.lineWidth = 2;
-        zCtx.strokeRect(center - cell / 2, center - cell / 2, cell, cell);
-        zCtx.strokeStyle = "rgba(0, 0, 0, 0.6)";
-        zCtx.lineWidth = 1;
-        zCtx.strokeRect(center - cell / 2 - 1, center - cell / 2 - 1, cell + 2, cell + 2);
+        for (let row = 0; row < zoomGrid; row++) {
+          for (let col = 0; col < zoomGrid; col++) {
+            const px = sx + col;
+            const py = sy + row;
+            const drawX = col * cellW;
+            const drawY = row * cellH;
+
+            if (px >= 0 && px < canvas.width && py >= 0 && py < canvas.height) {
+              const pixelData = ctx.getImageData(px, py, 1, 1).data;
+              zCtx.fillStyle = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`;
+              zCtx.fillRect(drawX, drawY, cellW + 0.5, cellH + 0.5);
+            } else {
+              const isEven = (row + col) % 2 === 0;
+              zCtx.fillStyle = isEven ? "#1e293b" : "#0f172a";
+              zCtx.fillRect(drawX, drawY, cellW + 0.5, cellH + 0.5);
+            }
+
+            // Grid border lines
+            zCtx.strokeStyle = "rgba(0, 0, 0, 0.08)";
+            zCtx.lineWidth = 1;
+            zCtx.strokeRect(drawX, drawY, cellW, cellH);
+          }
+        }
+
+        // Center target reticle
+        const cx = half * cellW;
+        const cy = half * cellH;
+
+        zCtx.strokeStyle = "rgba(0, 0, 0, 0.75)";
+        zCtx.lineWidth = Math.max(2, Math.round(2 * (dpr / 2)));
+        zCtx.strokeRect(cx, cy, cellW, cellH);
+
+        zCtx.strokeStyle = "rgba(255, 255, 255, 0.95)";
+        zCtx.lineWidth = Math.max(1, Math.round(1 * (dpr / 2)));
+        zCtx.strokeRect(cx + 1, cy + 1, cellW - 2, cellH - 2);
       }
     }
   };
@@ -263,6 +292,7 @@ export default function ColorPicker() {
                   onMouseLeave={() => setHoverColor(null)}
                   onClick={handleCanvasClick}
                   className="max-h-[500px] max-w-full object-contain cursor-crosshair"
+                  style={{ imageRendering: "pixelated" }}
                 />
               </div>
             </div>
@@ -302,9 +332,10 @@ export default function ColorPicker() {
             <div className="relative aspect-square w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-950 flex items-center justify-center shadow-inner">
               <canvas
                 ref={zoomCanvasRef}
-                width={160}
-                height={160}
-                className="w-full h-full"
+                width={320}
+                height={320}
+                className="w-full h-full block"
+                style={{ imageRendering: "pixelated" }}
               />
               {!hoverColor && !imageUrl && (
                 <span className="text-xs text-slate-500 absolute">等待上传与悬停...</span>
