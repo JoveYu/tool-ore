@@ -20,6 +20,8 @@ import {
   Lock,
   Barcode,
   Smile,
+  Dices,
+  ShieldCheck,
   Wrench,
   LucideIcon,
 } from "lucide-react";
@@ -45,6 +47,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Lock,
   Barcode,
   Smile,
+  Dices,
+  ShieldCheck,
   Wrench,
 };
 

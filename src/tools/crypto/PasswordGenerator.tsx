@@ -6,7 +6,7 @@ import {
   PasswordStrength,
 } from "./passwordUtils";
 import {
-  KeyRound,
+  Dices,
   Shield,
   Copy,
   Check,
@@ -89,7 +89,7 @@ export default function PasswordGenerator() {
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
         <div className="flex items-center gap-3.5">
           <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
-            <KeyRound className="w-6 h-6" />
+            <Dices className="w-6 h-6" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">

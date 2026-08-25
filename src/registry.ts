@@ -24,7 +24,7 @@ export const CATEGORIES: CategoryInfo[] = [
     id: "crypto",
     name: "加密工具",
     description: "Base64、哈希散列、对称加解密、非对称与密码生成",
-    iconName: "KeyRound",
+    iconName: "ShieldCheck",
   },
 ];
 
@@ -202,7 +202,7 @@ export const TOOLS: ToolDefinition[] = [
     description: "基于密码学加密安全随机数生成高强度随机密码，支持批量与强度估算",
     category: "crypto",
     tags: ["密码", "密码生成", "随机密码", "password", "强密码", "安全密码"],
-    iconName: "KeyRound",
+    iconName: "Dices",
     status: "stable",
     component: lazy(() => import("./tools/crypto/PasswordGenerator")),
   },
