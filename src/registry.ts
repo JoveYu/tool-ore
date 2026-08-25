@@ -220,6 +220,26 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/dev/XmlFormatter")),
   },
+  {
+    id: "json-to-ts-converter",
+    name: "JSON 转 TypeScript 类型",
+    description: "自动递归推导 JSON 嵌套对象与数组类型，生成标准 Interface / Type 声明",
+    category: "dev",
+    tags: ["json", "typescript", "ts", "json2ts", "类型推导", "interface"],
+    iconName: "FileCode2",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/JsonToTsConverter")),
+  },
+  {
+    id: "http-request-tester",
+    name: "HTTP 接口调试测试",
+    description: "支持 GET/POST 在线发包测试、请求头与 JSON 体编辑、响应耗时与状态查看",
+    category: "dev",
+    tags: ["http", "api", "postman", "fetch", "网络请求", "接口测试"],
+    iconName: "Send",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/HttpRequestTester")),
+  },
 
   // 2. 文本工具
   {
@@ -321,6 +341,16 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Radio",
     status: "stable",
     component: lazy(() => import("./tools/text/MorseCodeTool")),
+  },
+  {
+    id: "ascii-text-generator",
+    name: "ASCII 艺术字 Banner 生成",
+    description: "英文字符转换为大型 ASCII 字符画横幅，支持各类代码头注释封装",
+    category: "text",
+    tags: ["ascii", "字符画", "banner", "figlet", "艺术字", "注释banner"],
+    iconName: "Type",
+    status: "stable",
+    component: lazy(() => import("./tools/text/AsciiTextGenerator")),
   },
 
   // 3. 图片工具
