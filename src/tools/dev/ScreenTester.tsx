@@ -21,6 +21,7 @@ export default function ScreenTester() {
   const [screenInfo, setScreenInfo] = useState<ScreenHardwareInfo>(getScreenInfo());
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+  const fullscreenContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const update = () => setScreenInfo(getScreenInfo());
@@ -40,7 +41,22 @@ export default function ScreenTester() {
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => setIsFullScreen(true)).catch(() => {});
+      if (fullscreenContainerRef.current) {
+        fullscreenContainerRef.current
+          .requestFullscreen()
+          .then(() => setIsFullScreen(true))
+          .catch(() => {
+            document.documentElement
+              .requestFullscreen()
+              .then(() => setIsFullScreen(true))
+              .catch(() => {});
+          });
+      } else {
+        document.documentElement
+          .requestFullscreen()
+          .then(() => setIsFullScreen(true))
+          .catch(() => {});
+      }
     } else {
       document.exitFullscreen().then(() => setIsFullScreen(false)).catch(() => {});
     }
@@ -72,43 +88,50 @@ export default function ScreenTester() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Fullscreen Overlay Mode */}
-      {isFullScreen && (
-        <div
-          onClick={handleNext}
-          className="fixed inset-0 z-[9999] cursor-pointer flex flex-col justify-between p-6 select-none"
-          style={{
-            background:
-              currentPattern.type === "solid"
-                ? currentPattern.color
-                : currentPattern.type === "gradient"
-                ? "linear-gradient(to right, #000000 0%, #FFFFFF 100%)"
-                : currentPattern.type === "spectrum"
-                ? "linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet)"
-                : undefined,
-            backgroundImage:
-              currentPattern.type === "checkerboard"
-                ? "repeating-conic-gradient(#000000 0% 25%, #FFFFFF 0% 50%) 50% / 40px 40px"
-                : undefined,
-          }}
-        >
-          {/* Top Floating Help Bar */}
-          <div className="self-center px-4 py-2 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-mono flex items-center gap-4 opacity-30 hover:opacity-100 transition-opacity">
-            <span>
-              当前测试: {currentPattern.name} ({currentIndex + 1}/{SCREEN_TEST_PATTERNS.length})
-            </span>
-            <span>点击屏幕或空格键切换</span>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFullScreen();
-              }}
-              className="p-1 hover:text-indigo-400"
-            >
-              退出全屏 (ESC)
-            </button>
-          </div>
+      <div
+        ref={fullscreenContainerRef}
+        onClick={handleNext}
+        className={`${
+          isFullScreen ? "fixed inset-0 z-[9999] block" : "hidden"
+        } cursor-pointer select-none overflow-hidden`}
+        style={{
+          margin: 0,
+          padding: 0,
+          border: "none",
+          outline: "none",
+          width: "100vw",
+          height: "100vh",
+          background:
+            currentPattern.type === "solid"
+              ? currentPattern.color
+              : currentPattern.type === "gradient"
+              ? "linear-gradient(to right, #000000 0%, #FFFFFF 100%)"
+              : currentPattern.type === "spectrum"
+              ? "linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet)"
+              : undefined,
+          backgroundImage:
+            currentPattern.type === "checkerboard"
+              ? "repeating-conic-gradient(#000000 0% 25%, #FFFFFF 0% 50%) 50% / 40px 40px"
+              : undefined,
+        }}
+      >
+        {/* Top Floating Help Bar */}
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-mono flex items-center gap-4 opacity-30 hover:opacity-100 transition-opacity shadow-2xl z-10 border border-white/10">
+          <span>
+            当前测试: {currentPattern.name} ({currentIndex + 1}/{SCREEN_TEST_PATTERNS.length})
+          </span>
+          <span>点击屏幕或空格键切换</span>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleFullScreen();
+            }}
+            className="p-1 hover:text-indigo-400 font-bold"
+          >
+            退出全屏 (ESC)
+          </button>
         </div>
-      )}
+      </div>
 
       {/* Header */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
