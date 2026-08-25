@@ -15,6 +15,12 @@ export const CATEGORIES: CategoryInfo[] = [
     iconName: "FileText",
   },
   {
+    id: "doc",
+    name: "文档办公",
+    description: "PDF 合并拆分、页面提取旋转、加水印与多图生成 PDF",
+    iconName: "Files",
+  },
+  {
     id: "convert",
     name: "编码转换",
     description: "Base64、进制、URL、Unicode、摩斯电码与单位换算",
@@ -291,7 +297,19 @@ export const TOOLS: ToolDefinition[] = [
     component: lazy(() => import("./tools/text/SensitiveWordFilter")),
   },
 
-  // ── 3. 编码转换 (convert) ──
+  // ── 3. 文档办公 (doc) ──
+  {
+    id: "pdf-tool",
+    name: "PDF 处理工具",
+    description: "纯本地离线 PDF 合并、提取拆分、页面旋转、图片转 PDF 与全屏防盗文字水印",
+    category: "doc",
+    tags: ["pdf", "pdf合并", "pdf拆分", "pdf旋转", "图片转pdf", "pdf水印", "merge", "split"],
+    iconName: "FileText",
+    status: "stable",
+    component: lazy(() => import("./tools/doc/PdfTool")),
+  },
+
+  // ── 4. 编码转换 (convert) ──
   {
     id: "base64-converter",
     name: "Base64 编解码",
@@ -373,7 +391,7 @@ export const TOOLS: ToolDefinition[] = [
     component: lazy(() => import("./tools/convert/TimestampConverter")),
   },
 
-  // ── 4. 图片处理 (image) ──
+  // ── 5. 图片处理 (image) ──
   {
     id: "image-compressor",
     name: "图片压缩",
