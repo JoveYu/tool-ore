@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { generateBarcode } from "../src/tools/image/barcodeUtils";
+import { generateBarcode } from "../src/tools/design/barcodeUtils";
 
 describe("Barcode Utilities", () => {
   it("generates CODE128 barcode successfully", () => {

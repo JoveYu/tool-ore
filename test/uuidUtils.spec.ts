@@ -6,7 +6,7 @@ import {
   generateUlid,
   generateBatchIds,
   formatIdListOutput,
-} from "../src/tools/dev/uuidUtils";
+} from "../src/tools/crypto/uuidUtils";
 
 describe("UUID & NanoID Generator Utilities", () => {
   it("generates valid UUID v4 format", () => {

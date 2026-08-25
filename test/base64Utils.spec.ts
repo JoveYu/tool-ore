@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { encodeBase64, decodeBase64 } from "../src/tools/crypto/base64Utils";
+import { encodeBase64, decodeBase64 } from "../src/tools/convert/base64Utils";
 
 describe("Base64 Utilities", () => {
   it("encodes and decodes UTF-8 strings correctly", () => {

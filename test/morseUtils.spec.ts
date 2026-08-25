@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { encodeToMorse, decodeFromMorse } from "../src/tools/text/morseUtils";
+import { encodeToMorse, decodeFromMorse } from "../src/tools/convert/morseUtils";
 
 describe("Morse Code Utilities", () => {
   it("encodes text to Morse code accurately", () => {

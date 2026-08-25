@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { generateShortSlug, buildShortUrl } from "../src/tools/dev/shortUrlUtils";
+import { generateShortSlug, buildShortUrl } from "../src/tools/crypto/shortUrlUtils";
 
 describe("Short URL Utilities", () => {
   it("generates 6-character short slug based on Base62 algorithm", () => {

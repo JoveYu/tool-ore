@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { convertRadix, validateRadixInput } from "../src/tools/dev/radixUtils";
+import { convertRadix, validateRadixInput } from "../src/tools/convert/radixUtils";
 
 describe("Radix Converter Utilities", () => {
   it("converts 1024 decimal across all common radixes", () => {

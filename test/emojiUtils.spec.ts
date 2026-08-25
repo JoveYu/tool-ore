@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { searchFullEmojis, ALL_EMOJIS } from "../src/tools/text/fullEmojiUtils";
+import { searchFullEmojis, ALL_EMOJIS } from "../src/tools/design/fullEmojiUtils";
 
 describe("Full Emoji Utilities with Chinese Search", () => {
   it("loads complete Unicode Emoji database", () => {

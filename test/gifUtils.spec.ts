@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { VideoToGifOptions } from "../src/tools/image/gifUtils";
+import { VideoToGifOptions } from "../src/tools/media/gifUtils";
 
 describe("Video to GIF Utilities", () => {
   it("validates video to gif options interface", () => {

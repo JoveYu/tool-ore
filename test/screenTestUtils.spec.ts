@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   SCREEN_TEST_PATTERNS,
   getScreenInfo,
-} from "../src/tools/dev/screenTestUtils";
+} from "../src/tools/media/screenTestUtils";
 
 describe("Screen Tester Utilities", () => {
   it("provides comprehensive screen test patterns", () => {

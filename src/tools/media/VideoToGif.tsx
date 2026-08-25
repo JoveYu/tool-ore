@@ -87,39 +87,28 @@ export default function VideoToGif() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
+      {/* Hidden File Input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="video/*,.mp4,.webm,.mov"
+        onChange={handleFileUpload}
+        className="hidden"
+      />
+
       {/* Header */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
-              <Film className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-                视频转 GIF 动图
-              </h1>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                纯本地读取视频文件，截取指定时间段、调节帧率与分辨率快速生成高质量 GIF
-              </p>
-            </div>
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+            <Film className="w-6 h-6" />
           </div>
-
-          <div className="flex items-center gap-2">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="video/*,.mp4,.webm,.mov"
-              onChange={handleFileUpload}
-              className="hidden"
-            />
-
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
-            >
-              <Upload className="w-3.5 h-3.5" />
-              <span>选择上传视频</span>
-            </button>
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              视频转 GIF 动图
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              纯本地读取视频文件，截取指定时间段、调节帧率与分辨率快速生成高质量 GIF
+            </p>
           </div>
         </div>
       </div>
@@ -146,10 +135,14 @@ export default function VideoToGif() {
           {/* Left: Video Player & Settings */}
           <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs space-y-4">
             <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-              <span>视频截取与参数</span>
-              <span className="text-slate-400 font-mono">
-                总时长: {duration.toFixed(1)}s
-              </span>
+              <span>视频截取与参数 (总时长: {duration.toFixed(1)}s)</span>
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer text-xs font-medium"
+              >
+                <Upload className="w-3 h-3 text-indigo-500" />
+                <span>更换视频</span>
+              </button>
             </div>
 
             <div className="rounded-2xl overflow-hidden bg-black/90 aspect-video border border-slate-200 dark:border-slate-800">

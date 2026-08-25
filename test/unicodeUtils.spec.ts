@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { textToUnicodeFormats, decodeToText } from "../src/tools/text/unicodeUtils";
+import { textToUnicodeFormats, decodeToText } from "../src/tools/convert/unicodeUtils";
 
 describe("Unicode Converter Utilities", () => {
   it("converts text to multiple Unicode representations", () => {

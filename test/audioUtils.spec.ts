@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { AudioTrimOptions } from "../src/tools/image/audioUtils";
+import { AudioTrimOptions } from "../src/tools/media/audioUtils";
 
 describe("Audio Cutter Utilities", () => {
   it("validates audio trim options interface", () => {

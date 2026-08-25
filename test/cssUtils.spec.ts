@@ -4,7 +4,7 @@ import {
   buildBoxShadowCss,
   GRADIENT_PRESETS,
   SHADOW_PRESETS,
-} from "../src/tools/dev/cssUtils";
+} from "../src/tools/design/cssUtils";
 
 describe("CSS Gradient & Box Shadow Utilities", () => {
   it("builds linear gradient CSS and Tailwind class correctly", () => {

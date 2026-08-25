@@ -3,7 +3,7 @@ import {
   THEME_CONFIGS,
   BACKGROUND_PRESETS,
   highlightCodeSimple,
-} from "../src/tools/dev/codeToImageUtils";
+} from "../src/tools/design/codeToImageUtils";
 
 describe("Code to Image Utilities", () => {
   it("provides comprehensive IDE themes and gradient background presets", () => {

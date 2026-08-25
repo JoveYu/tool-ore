@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { convertAllUnits, formatUnitNumber } from "../src/tools/dev/unitUtils";
+import { convertAllUnits, formatUnitNumber } from "../src/tools/convert/unitUtils";
 
 describe("Unit Converter Utilities", () => {
   it("converts data storage units accurately (1024 base)", () => {

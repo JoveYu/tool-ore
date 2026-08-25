@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   encodeHtmlEntities,
   decodeHtmlEntities,
-} from "../src/tools/dev/htmlEntityUtils";
+} from "../src/tools/convert/htmlEntityUtils";
 
 describe("HTML Entity Converter Utilities", () => {
   it("encodes named entities accurately", () => {

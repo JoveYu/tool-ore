@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { optimizeSvg, DEFAULT_SVG_OPTIONS } from "../src/tools/image/svgOptimizerUtils";
+import { optimizeSvg, DEFAULT_SVG_OPTIONS } from "../src/tools/design/svgOptimizerUtils";
 
 describe("SVG Optimizer Utilities", () => {
   it("cleans redundant metadata, comments and doctypes from SVG", () => {

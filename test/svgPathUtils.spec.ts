@@ -3,7 +3,7 @@ import {
   calculatePathBBox,
   transformSvgPath,
   SvgPathTransformOptions,
-} from "../src/tools/image/svgPathUtils";
+} from "../src/tools/design/svgPathUtils";
 
 describe("SVG Path Utilities", () => {
   it("computes bounding box of SVG path accurately", () => {

@@ -4,7 +4,7 @@ import {
   formatStandardDate,
   getRelativeTime,
   getTimeZoneList,
-} from "../src/tools/dev/timestampUtils";
+} from "../src/tools/convert/timestampUtils";
 
 describe("Timestamp Converter Utilities", () => {
   it("parses 10-digit second timestamp correctly", () => {

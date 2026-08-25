@@ -87,37 +87,36 @@ export default function HttpRequestTester() {
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
-              <Send className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-                HTTP 接口在线测试与调试
-              </h1>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                支持 GET、POST、PUT 等方法在线发包测试、请求头与 JSON 体编辑、响应耗时测速与状态查看
-              </p>
-            </div>
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+            <Send className="w-6 h-6" />
           </div>
-
-          <div className="flex flex-wrap gap-2 text-xs">
-            {HTTP_PRESETS.map((p) => (
-              <button
-                key={p.name}
-                onClick={() => handleApplyPreset(p)}
-                className="px-3 py-1 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition-colors cursor-pointer shadow-2xs"
-              >
-                {p.name.split(" ")[0]}
-              </button>
-            ))}
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              HTTP 接口在线测试与调试
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              支持 GET、POST、PUT 等方法在线发包测试、请求头与 JSON 体编辑、响应耗时测速与状态查看
+            </p>
           </div>
         </div>
       </div>
 
       {/* Main Request URL Bar */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 shadow-xs space-y-4">
+        {/* Quick Presets */}
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <span className="text-slate-400 font-medium">快速预设:</span>
+          {HTTP_PRESETS.map((p) => (
+            <button
+              key={p.name}
+              onClick={() => handleApplyPreset(p)}
+              className="px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition-colors cursor-pointer shadow-2xs"
+            >
+              {p.name.split(" ")[0]}
+            </button>
+          ))}
+        </div>
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
           {/* Method Selector */}
           <select

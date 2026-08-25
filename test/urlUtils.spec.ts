@@ -4,7 +4,7 @@ import {
   buildUrlFromParts,
   paramsToJson,
   jsonToParams,
-} from "../src/tools/dev/urlUtils";
+} from "../src/tools/convert/urlUtils";
 
 describe("URL Parser Utilities", () => {
   it("parses absolute URL with query parameters and hash correctly", () => {

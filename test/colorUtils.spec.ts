@@ -5,7 +5,7 @@ import {
   rgbToHsv,
   rgbToCmyk,
   calculateAllFormats,
-} from "../src/tools/image/colorUtils";
+} from "../src/tools/design/colorUtils";
 
 describe("Color Picker Utilities", () => {
   it("converts RGB to HEX correctly", () => {
