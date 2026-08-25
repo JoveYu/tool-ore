@@ -250,6 +250,36 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/dev/CodeToImage")),
   },
+  {
+    id: "git-command-generator",
+    name: "Git 常用命令生成器",
+    description: "解决撤销提交、历史修改、分支合并、储藏与冲突还原等常见 Git 场景",
+    category: "dev",
+    tags: ["git", "git命令", "版本控制", "撤销commit", "stash", "rebase", "分支管理"],
+    iconName: "GitBranch",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/GitCommandGenerator")),
+  },
+  {
+    id: "regex-railroad",
+    name: "正则表达式铁路图",
+    description: "将正则表达式分解为直观清晰的语法节点铁路流程图，看懂匹配逻辑",
+    category: "dev",
+    tags: ["regex", "铁路图", "流程图", "railroad", "正则可视化", "语法树"],
+    iconName: "GitBranch",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/RegexRailroad")),
+  },
+  {
+    id: "short-url-tool",
+    name: "短链接编码与生成",
+    description: "基于 Base62 / Base58 算法生成高压缩短网址 Slug 并支持还原与自定义域名",
+    category: "dev",
+    tags: ["短链接", "shorturl", "base62", "base58", "短网址", "slug"],
+    iconName: "Link2",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/ShortUrlTool")),
+  },
 
   // 2. 文本工具
   {
@@ -484,6 +514,26 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/image/SvgPathEditor")),
   },
+  {
+    id: "audio-cutter",
+    name: "纯本地音频波形剪辑",
+    description: "Web Audio 绘制波形图、毫秒级区间裁剪、淡入淡出调节并导出无损 WAV 文件",
+    category: "image",
+    tags: ["音频剪辑", "波形图", "音频裁剪", "wav导出", "淡入淡出", "audio", "剪音乐"],
+    iconName: "Volume2",
+    status: "stable",
+    component: lazy(() => import("./tools/image/AudioCutter")),
+  },
+  {
+    id: "video-to-gif",
+    name: "视频转 GIF 动图",
+    description: "纯本地读取视频文件，截取指定时间段、调节帧率与分辨率快速生成高质量 GIF",
+    category: "image",
+    tags: ["视频转gif", "gif制作", "动图生成", "录屏转gif", "video2gif"],
+    iconName: "Film",
+    status: "stable",
+    component: lazy(() => import("./tools/image/VideoToGif")),
+  },
 
   // 4. 加密工具
   {
@@ -505,6 +555,16 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Hash",
     status: "stable",
     component: lazy(() => import("./tools/crypto/HashCalculator")),
+  },
+  {
+    id: "file-hash-checker",
+    name: "文件哈希比对与校验",
+    description: "计算 SHA-256/SHA-1 校验指纹，比对官方校验签名或双文件内容一致性防篡改",
+    category: "crypto",
+    tags: ["文件比对", "文件哈希", "sha256校验", "完整性校验", "防篡改", "查重"],
+    iconName: "ShieldCheck",
+    status: "stable",
+    component: lazy(() => import("./tools/crypto/FileHashChecker")),
   },
   {
     id: "symmetric-crypto",

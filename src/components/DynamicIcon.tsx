@@ -45,6 +45,9 @@ import {
   Camera,
   Send,
   Type,
+  GitBranch,
+  Volume2,
+  Link2,
   Wrench,
   LucideIcon,
 } from "lucide-react";
@@ -95,6 +98,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Camera,
   Send,
   Type,
+  GitBranch,
+  Volume2,
+  Link2,
   Wrench,
 };
 
