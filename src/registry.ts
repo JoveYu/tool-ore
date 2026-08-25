@@ -392,6 +392,16 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/text/AsciiTextGenerator")),
   },
+  {
+    id: "sensitive-word-filter",
+    name: "文本敏感词与违禁词检测",
+    description: "纯本地离线检测广告法极限词、违规营销引流词与低俗词汇，支持高亮与一键脱敏",
+    category: "text",
+    tags: ["敏感词", "违禁词", "广告法", "极限词", "内容审查", "脱敏", "过滤"],
+    iconName: "ShieldAlert",
+    status: "stable",
+    component: lazy(() => import("./tools/text/SensitiveWordFilter")),
+  },
 
   // 3. 图片工具
   {

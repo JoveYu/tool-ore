@@ -26,6 +26,7 @@
         "jsqr": "^1.4.0",
         "lucide-react": "^1.33.0",
         "marked": "^18.0.11",
+        "mint-filter": "^4.0.3",
         "opencc-js": "^1.4.2",
         "pinyin-pro": "^3.29.3",
         "qrcode": "^1.5.4",
@@ -440,6 +441,8 @@
     "marked": ["marked@18.0.11", "https://registry.npmmirror.com/marked/-/marked-18.0.11.tgz", { "bin": { "marked": "bin/marked.js" } }, "sha512-HnslJfsZkRPBDJRHvVtAaWlZHEpSu7u8LgQuJCELjRKuWR+hpq4A7sLq3p8HaI9ypVoXDXxV34CsQJEe1+J5Aw=="],
 
     "miniflare": ["miniflare@5.20260815.0-alpha", "https://registry.npmmirror.com/miniflare/-/miniflare-5.20260815.0-alpha.tgz", { "dependencies": { "@cspotcode/source-map-support": "0.8.1", "sharp": "0.35.2", "undici": "7.29.0", "workerd": "1.20260815.1", "ws": "8.21.0", "youch": "4.1.0-beta.10" } }, "sha512-YAaGj4Sh5f4fqHKiMQ8zRHDOOM5IGUVtMhnLIeyjuQfU+9P6hcOTrHUVtbfj/ZPay9Kzik4pWELB39pGgefjiQ=="],
+
+    "mint-filter": ["mint-filter@4.0.3", "https://registry.npmmirror.com/mint-filter/-/mint-filter-4.0.3.tgz", {}, "sha512-CKh2zKv9oFHEmYCXFk5REG2480FBNYixK+hw0mlRd/TgDJVhPpRhHPNhWa3Q6zF1tpE2q7w7y+Ylu1YJusXDpA=="],
 
     "moo": ["moo@0.5.3", "https://registry.npmmirror.com/moo/-/moo-0.5.3.tgz", {}, "sha512-m2fmM2dDm7GZQsY7KK2cme8agi+AAljILjQnof7p1ZMDe6dQ4bdnSMx0cPppudoeNv5hEFQirN6u+O4fDE0IWA=="],
 

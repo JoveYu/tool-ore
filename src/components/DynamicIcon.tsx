@@ -48,6 +48,7 @@ import {
   GitBranch,
   Volume2,
   Link2,
+  ShieldAlert,
   Wrench,
   LucideIcon,
 } from "lucide-react";
@@ -101,6 +102,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   GitBranch,
   Volume2,
   Link2,
+  ShieldAlert,
   Wrench,
 };
 
