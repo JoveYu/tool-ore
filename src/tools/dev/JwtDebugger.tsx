@@ -72,45 +72,40 @@ export default function JwtDebugger() {
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
-              <FileCode2 className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-                JWT Token 解析与验证
-              </h1>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                JSON Web Token 头部与载荷极速解析、过期时间智能提示与 HS256 签名校验
-              </p>
-            </div>
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+            <FileCode2 className="w-6 h-6" />
           </div>
-
-          <div className="flex items-center gap-2 self-start sm:self-center">
-            <button
-              onClick={() => handleLoadSample("valid")}
-              className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
-            >
-              载入有效示例
-            </button>
-            <button
-              onClick={() => handleLoadSample("expired")}
-              className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
-            >
-              载入过期示例
-            </button>
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              JWT Token 解析与验证
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              JSON Web Token 头部与载荷极速解析、过期时间智能提示与 HS256 签名校验
+            </p>
           </div>
         </div>
       </div>
 
       {/* Main Encoded Token Box */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs space-y-3">
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
           <label className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
             输入待解析的 JWT Token (Encoded)
           </label>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => handleLoadSample("valid")}
+              className="px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer"
+            >
+              载入有效示例
+            </button>
+            <button
+              onClick={() => handleLoadSample("expired")}
+              className="px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer"
+            >
+              载入过期示例
+            </button>
             <button
               onClick={() => handleCopy("raw_jwt", jwtToken)}
               className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer"

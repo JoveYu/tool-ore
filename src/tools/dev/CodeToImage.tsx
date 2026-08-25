@@ -88,30 +88,17 @@ console.log(await computeHash("Hello 2026!"));`;
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
-              <Camera className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-                代码美化截图与卡片生成
-              </h1>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                将代码片段一键生成高颜值 Ray.so / Carbon 风格分享卡片，支持多主题与高清 PNG 导出
-              </p>
-            </div>
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+            <Camera className="w-6 h-6" />
           </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleDownloadImage}
-              disabled={isExporting}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold text-xs shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
-            >
-              <Download className="w-4 h-4" />
-              <span>{isExporting ? "生成图片中..." : "导出高清 PNG 截图"}</span>
-            </button>
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              代码美化截图与卡片生成
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              将代码片段一键生成高颜值 Ray.so / Carbon 风格分享卡片，支持多主题与高清 PNG 导出
+            </p>
           </div>
         </div>
       </div>
@@ -119,10 +106,16 @@ console.log(await computeHash("Hello 2026!"));`;
       {/* Visual Live Preview Box (WYSIWYG) */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 shadow-xs space-y-4">
         <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
-          <span>实时视觉效果预览</span>
-          <span className="text-slate-400 font-mono text-[11px]">
-            {lineCount} 行代码 · {themeConfig.name}
-          </span>
+          <span>实时视觉效果预览 ({lineCount} 行 · {themeConfig.name})</span>
+
+          <button
+            onClick={handleDownloadImage}
+            disabled={isExporting}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold text-xs shadow-xs transition-all cursor-pointer"
+          >
+            <Download className="w-4 h-4" />
+            <span>{isExporting ? "生成图片中..." : "导出高清 PNG 截图"}</span>
+          </button>
         </div>
 
         {/* Outer Background Container for screenshot rendering */}
