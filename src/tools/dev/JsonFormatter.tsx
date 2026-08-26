@@ -9,13 +9,10 @@ import {
   RotateCcw,
   Minimize2,
   Maximize2,
-  ArrowDownUp,
   AlertCircle,
   CheckCircle2,
-  FileCode,
   Sparkles,
-  Eye,
-  Edit3,
+  Download,
 } from "lucide-react";
 
 const SAMPLE_JSON = `{
@@ -26,7 +23,7 @@ const SAMPLE_JSON = `{
     "图片压缩与格式转换",
     "颜色拾取器",
     "Base64 编解码",
-    "哈希散列计算 (MD5, SHA-256, SM3)",
+    "哈希散列计算",
     "JSON 格式化",
     "文本比对与排版",
     "二维码生成与识别"
@@ -48,8 +45,7 @@ export default function JsonFormatter() {
   const [indent, setIndent] = useState<number>(2);
   const [sortKeys, setSortKeys] = useState<boolean>(false);
   const [unescapeUnicode, setUnescapeUnicode] = useState<boolean>(true);
-  const [copied, setCopied] = useState<boolean>(false);
-  const [viewMode, setViewMode] = useState<"edit" | "highlight">("highlight");
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const options: JsonFormatOptions = useMemo(
     () => ({
@@ -77,11 +73,20 @@ export default function JsonFormatter() {
     }
   };
 
-  const handleCopy = async () => {
+  const handleCopy = async (key: string, text: string) => {
+    if (!text) return;
+    await navigator.clipboard.writeText(text);
+    setCopiedKey(key);
+    setTimeout(() => setCopiedKey(null), 1800);
+  };
+
+  const handleDownload = () => {
     if (!processedResult.formattedText) return;
-    await navigator.clipboard.writeText(processedResult.formattedText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const blob = new Blob([processedResult.formattedText], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `formatted_${Date.now()}.json`;
+    a.click();
   };
 
   const handleClear = () => {
@@ -107,152 +112,108 @@ export default function JsonFormatter() {
         </div>
       </div>
 
-      {/* Editor & Viewer Area */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-xs overflow-hidden flex flex-col">
-        {/* Toolbar */}
-        <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 flex flex-wrap items-center justify-between gap-3 text-xs">
-          {/* Options */}
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-slate-500 dark:text-slate-400">缩进空格:</span>
-              <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-white dark:bg-slate-800">
-                {[2, 4].map((num) => (
-                  <button
-                    key={num}
-                    onClick={() => setIndent(num)}
-                    className={`px-2.5 py-0.5 rounded-md font-mono transition-colors ${
-                      indent === num
-                        ? "bg-indigo-500 text-white font-bold"
-                        : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
-                    }`}
-                  >
-                    {num} 格
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <label className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={sortKeys}
-                onChange={(e) => setSortKeys(e.target.checked)}
-                className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <span>字典序排序 Key</span>
-            </label>
-
-            <label className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={unescapeUnicode}
-                onChange={(e) => setUnescapeUnicode(e.target.checked)}
-                className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <span>解析 Unicode 中文 (\\uXXXX)</span>
-            </label>
-          </div>
-
-          {/* Quick Actions */}
-          <div className="flex items-center gap-2 ml-auto">
-            {/* View Mode Toggle */}
+      {/* Options & Config Bar */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-xs flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-slate-500 dark:text-slate-400 font-medium">缩进空格:</span>
             <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-white dark:bg-slate-800">
-              <button
-                onClick={() => setViewMode("highlight")}
-                className={`px-2 py-0.5 rounded-md font-sans text-xs transition-colors flex items-center gap-1 cursor-pointer ${
-                  viewMode === "highlight"
-                    ? "bg-indigo-600 text-white font-bold"
-                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
-                }`}
-              >
-                <Eye className="w-3 h-3" />
-                <span>高亮视图</span>
-              </button>
-              <button
-                onClick={() => setViewMode("edit")}
-                className={`px-2 py-0.5 rounded-md font-sans text-xs transition-colors flex items-center gap-1 cursor-pointer ${
-                  viewMode === "edit"
-                    ? "bg-indigo-600 text-white font-bold"
-                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
-                }`}
-              >
-                <Edit3 className="w-3 h-3" />
-                <span>快速编辑</span>
-              </button>
+              {[2, 4].map((num) => (
+                <button
+                  key={num}
+                  onClick={() => setIndent(num)}
+                  className={`px-2.5 py-0.5 rounded-md font-mono transition-colors cursor-pointer ${
+                    indent === num
+                      ? "bg-indigo-600 text-white font-bold"
+                      : "text-slate-600 dark:text-slate-300 hover:text-slate-900"
+                  }`}
+                >
+                  {num} 格
+                </button>
+              ))}
             </div>
-
-            <button
-              onClick={handleFormat}
-              disabled={!processedResult.isValid || !inputJson}
-              className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 rounded-lg shadow-2xs transition-all cursor-pointer"
-            >
-              <Maximize2 className="w-3 h-3" />
-              格式化
-            </button>
-            <button
-              onClick={handleMinify}
-              disabled={!processedResult.isValid || !inputJson}
-              className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200/80 dark:hover:bg-slate-700 disabled:opacity-40 rounded-lg transition-colors cursor-pointer"
-            >
-              <Minimize2 className="w-3 h-3" />
-              压缩
-            </button>
-            <button
-              onClick={() => setInputJson(SAMPLE_JSON)}
-              className="px-2.5 py-1 text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
-            >
-              载入示例
-            </button>
-            <button
-              onClick={handleClear}
-              className="px-2.5 py-1 text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 flex items-center gap-1 transition-colors cursor-pointer"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              清空
-            </button>
-            <button
-              onClick={handleCopy}
-              disabled={!processedResult.formattedText}
-              className="inline-flex items-center gap-1.5 px-3 py-1 font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 shadow-2xs transition-colors cursor-pointer"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-emerald-500" />
-                  <span className="text-emerald-600 dark:text-emerald-400">已复制</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3.5 h-3.5 text-slate-400" />
-                  <span>复制结果</span>
-                </>
-              )}
-            </button>
           </div>
+
+          <label className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-medium cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={sortKeys}
+              onChange={(e) => setSortKeys(e.target.checked)}
+              className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
+            />
+            <span>字典序排序 Key</span>
+          </label>
+
+          <label className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 font-medium cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={unescapeUnicode}
+              onChange={(e) => setUnescapeUnicode(e.target.checked)}
+              className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
+            />
+            <span>解析 Unicode 中文 (\\uXXXX)</span>
+          </label>
         </div>
 
-        {/* Editor Body */}
-        <div className="relative min-h-[460px] flex flex-col p-2">
-          {viewMode === "highlight" && processedResult.isValid ? (
-            <CodeViewer
-              code={processedResult.formattedText || inputJson}
-              language="json"
-              maxHeight="480px"
-              placeholder="请在此输入或粘贴 JSON 内容..."
-            />
-          ) : (
-            <textarea
-              value={inputJson}
-              onChange={(e) => setInputJson(e.target.value)}
-              placeholder="请在此粘贴或输入需要格式化的 JSON 内容..."
-              spellCheck={false}
-              className="flex-1 w-full p-4 font-mono text-xs sm:text-sm bg-transparent outline-none resize-none leading-relaxed select-all text-slate-900 dark:text-slate-100"
-              rows={18}
-            />
-          )}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleFormat}
+            disabled={!processedResult.isValid || !inputJson.trim()}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 rounded-xl shadow-xs transition-all cursor-pointer"
+          >
+            <Maximize2 className="w-3.5 h-3.5" />
+            <span>格式化美化</span>
+          </button>
+          <button
+            onClick={handleMinify}
+            disabled={!processedResult.isValid || !inputJson.trim()}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200/80 dark:hover:bg-slate-700 disabled:opacity-40 rounded-xl transition-colors cursor-pointer"
+          >
+            <Minimize2 className="w-3.5 h-3.5" />
+            <span>压缩单行</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 2-Column Split Workspace */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left: Input Textarea */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+              原始 JSON 输入区
+            </label>
+
+            <div className="flex items-center gap-2 text-xs">
+              <button
+                onClick={() => setInputJson(SAMPLE_JSON)}
+                className="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer font-medium"
+              >
+                <Sparkles className="w-3 h-3" />
+                <span>载入示例</span>
+              </button>
+              <button
+                onClick={handleClear}
+                className="text-slate-400 hover:text-rose-500 flex items-center gap-1 cursor-pointer transition-colors font-medium"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>清空</span>
+              </button>
+            </div>
+          </div>
+
+          <textarea
+            value={inputJson}
+            onChange={(e) => setInputJson(e.target.value)}
+            placeholder="请在此粘贴或输入需要格式化的 JSON 内容..."
+            spellCheck={false}
+            className="flex-1 w-full min-h-[380px] p-3.5 font-mono text-xs rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white outline-none resize-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 leading-relaxed"
+            rows={18}
+          />
 
           {/* Error Banner */}
-          {!processedResult.isValid && processedResult.error && (
-            <div className="m-4 p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-rose-600 dark:text-rose-400 text-xs flex items-start gap-2.5 shadow-xs">
+          {!processedResult.isValid && inputJson.trim() && processedResult.error && (
+            <div className="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-rose-600 dark:text-rose-400 text-xs flex items-start gap-2.5 shadow-xs">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
               <div>
                 <div className="font-bold">JSON 语法格式错误</div>
@@ -266,32 +227,83 @@ export default function JsonFormatter() {
               </div>
             </div>
           )}
+
+          <div className="text-[11px] text-slate-400 font-mono flex items-center justify-between pt-1">
+            <span>字符数: {inputJson.length}</span>
+            <span>大小: {formatFileSize(new Blob([inputJson]).size)}</span>
+          </div>
         </div>
 
-        {/* Footer Statistics */}
-        <div className="p-3 px-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 flex flex-wrap items-center justify-between text-xs text-slate-400 font-mono">
-          <div className="flex items-center gap-4">
+        {/* Right: Formatted Highlighted Output */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 shadow-xs space-y-3 flex flex-col">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+              格式化排版结果
+            </label>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleDownload}
+                disabled={!processedResult.formattedText}
+                className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 transition-colors cursor-pointer"
+                title="下载 JSON 文件"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>下载</span>
+              </button>
+
+              <button
+                onClick={() => handleCopy("result", processedResult.formattedText || "")}
+                disabled={!processedResult.formattedText}
+                className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white shadow-xs transition-colors cursor-pointer"
+              >
+                {copiedKey === "result" ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-300" />
+                    <span>已复制</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>复制 JSON</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          <div className="flex-1 flex flex-col">
+            <CodeViewer
+              code={processedResult.formattedText || inputJson}
+              language="json"
+              maxHeight="380px"
+              placeholder="格式化后的 JSON 将实时呈现在此处..."
+            />
+          </div>
+
+          {/* Footer Statistics */}
+          <div className="text-[11px] text-slate-400 flex flex-wrap items-center justify-between pt-1 font-mono">
             {processedResult.isValid ? (
               <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-sans font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                语法校验有效
+                语法有效
               </span>
             ) : (
               <span className="flex items-center gap-1 text-rose-500 font-sans font-medium">
                 <AlertCircle className="w-3.5 h-3.5" />
-                格式无效
+                语法无效
               </span>
             )}
-          </div>
 
-          {processedResult.stats && (
-            <div className="flex items-center gap-4 text-[11px]">
-              <span>总行数: {processedResult.stats.lines}</span>
-              <span>嵌套深度: {processedResult.stats.depth} 层</span>
-              <span>总键值对: {processedResult.stats.keysCount}</span>
-              <span>大小: {formatFileSize(processedResult.stats.sizeBytes)}</span>
-            </div>
-          )}
+            {processedResult.stats && (
+              <div className="flex items-center gap-3">
+                <span>{processedResult.stats.lines} 行</span>
+                <span>深度: {processedResult.stats.depth} 层</span>
+                <span>{processedResult.stats.keysCount} 个键值</span>
+                <span>{formatFileSize(processedResult.stats.sizeBytes)}</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
