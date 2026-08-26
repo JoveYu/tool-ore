@@ -17,7 +17,7 @@ export const CATEGORIES: CategoryInfo[] = [
   {
     id: "doc",
     name: "文档办公",
-    description: "PDF 合并拆分、页面提取旋转、加水印与多图生成 PDF",
+    description: "PDF 合并拆分、表格转换、电子印章生成与图片转 PDF",
     iconName: "Files",
   },
   {
@@ -224,6 +224,26 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/dev/HarViewer")),
   },
+  {
+    id: "json-diff",
+    name: "JSON 语义对比",
+    description: "纯本地深度比较两个 JSON 结构差异，自动忽略 Key 顺序，精确高亮新增与修改项",
+    category: "dev",
+    tags: ["json", "jsondiff", "diff", "json比对", "结构化对比", "语义比对"],
+    iconName: "GitCompare",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/JsonDiff")),
+  },
+  {
+    id: "sql-to-entity",
+    name: "SQL 转实体类",
+    description: "解析 CREATE TABLE 语句，自动推导类型与注释，一键生成 TS/Go/Java/Python/Rust 模型",
+    category: "dev",
+    tags: ["sql", "建表语句", "代码生成", "sql转java", "sql转ts", "sql转go", "orm", "entity"],
+    iconName: "FileCode2",
+    status: "stable",
+    component: lazy(() => import("./tools/dev/SqlToEntity")),
+  },
 
   // ── 2. 文本处理 (text) ──
   {
@@ -337,6 +357,16 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Stamp",
     status: "stable",
     component: lazy(() => import("./tools/doc/StampGenerator")),
+  },
+  {
+    id: "table-converter",
+    name: "表格数据多向互转",
+    description: "纯本地解析 Excel 粘贴数据与 CSV 文件，支持转换为 JSON、SQL、Markdown 与 HTML",
+    category: "doc",
+    tags: ["excel", "csv", "tsv", "表格转换", "excel转json", "csv转json", "sql生成", "markdown表格"],
+    iconName: "FileSpreadsheet",
+    status: "stable",
+    component: lazy(() => import("./tools/doc/TableConverter")),
   },
 
   // ── 4. 编码转换 (convert) ──
@@ -473,6 +503,16 @@ export const TOOLS: ToolDefinition[] = [
     component: lazy(() => import("./tools/image/ImageChromaKey")),
   },
   {
+    id: "image-stitcher",
+    name: "长图拼接",
+    description: "纯本地 Canvas 高清批量拼接图片，支持垂直竖向长图、水平横向长图与九宫格矩阵排版",
+    category: "image",
+    tags: ["拼图", "长图拼接", "横向拼图", "竖向拼图", "九宫格拼图", "图片拼接", "stitch"],
+    iconName: "Layers",
+    status: "stable",
+    component: lazy(() => import("./tools/image/ImageStitcher")),
+  },
+  {
     id: "exif-tool",
     name: "EXIF 查看与清除",
     description: "读取照片拍摄相机、镜头参数、GPS 坐标，并支持一键脱敏擦除隐私元数据",
@@ -584,6 +624,16 @@ export const TOOLS: ToolDefinition[] = [
     status: "stable",
     component: lazy(() => import("./tools/design/EmojiSearcher")),
   },
+  {
+    id: "glassmorphism-generator",
+    name: "毛玻璃与拟态生成",
+    description: "可视化调校 Backdrop Blur 毛玻璃透光特效与软拟物光影，一键复制 CSS 与 Tailwind 样式",
+    category: "design",
+    tags: ["毛玻璃", "拟态", "glassmorphism", "neumorphism", "backdrop-filter", "css特效", "tailwind"],
+    iconName: "Sparkles",
+    status: "stable",
+    component: lazy(() => import("./tools/design/GlassmorphismGenerator")),
+  },
 
   // ── 6. 加密安全 (crypto) ──
   {
@@ -687,6 +737,26 @@ export const TOOLS: ToolDefinition[] = [
     iconName: "Monitor",
     status: "stable",
     component: lazy(() => import("./tools/media/ScreenTester")),
+  },
+  {
+    id: "screen-recorder",
+    name: "屏幕录制",
+    description: "纯本地调用浏览器底层 API 录制屏幕、窗口或标签页，支持系统声音与麦克风混音",
+    category: "media",
+    tags: ["录屏", "屏幕录制", "麦克风录音", "录制视频", "webm", "screen-recorder"],
+    iconName: "Video",
+    status: "stable",
+    component: lazy(() => import("./tools/media/ScreenRecorder")),
+  },
+  {
+    id: "subtitle-converter",
+    name: "字幕歌词转换校准",
+    description: "纯本地 SRT、WebVTT、LRC 与 ASS 字幕互转，支持毫秒级时间轴平移校准",
+    category: "media",
+    tags: ["字幕", "srt", "vtt", "lrc", "ass", "字幕转换", "歌词转换", "音画同步", "时间轴校准"],
+    iconName: "Film",
+    status: "stable",
+    component: lazy(() => import("./tools/media/SubtitleConverter")),
   },
 ];
 
